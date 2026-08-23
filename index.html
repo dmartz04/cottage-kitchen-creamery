@@ -182,6 +182,7 @@
             border-radius: 16px;
             margin-bottom: 1.5rem;
             overflow: hidden;
+            position: relative;
         }
         .product-image-placeholder img {
             width: 100%;
@@ -189,6 +190,32 @@
             object-fit: cover;
             display: block;
         }
+        .ckc-logo-badge {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+        }
+        .ckc-logo-badge svg { display: block; }
+        .ckc-logo-badge span {
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: var(--white);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+        }
+        .ckc-logo-badge.on-tee {
+            top: 34%;
+        }
+        .ckc-logo-badge.on-tee svg { width: 64px; height: 64px; }
+        .ckc-logo-badge.on-tee span { font-size: 0.7rem; margin-top: 2px; }
+        .ckc-logo-badge.on-hat {
+            top: 40%;
+        }
+        .ckc-logo-badge.on-hat svg { width: 46px; height: 46px; }
+        .ckc-logo-badge.on-hat span { font-size: 0.6rem; margin-top: 1px; }
         .product-details h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
         .product-details p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
         .price-row {
@@ -338,6 +365,30 @@
 
             <div class="grid">
                 <div class="product-card">
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1674595605055-fa617cb4f8d7?w=800&auto=format&fit=crop&q=80" alt="Scoop of dark chocolate ice cream" loading="lazy"></div>
+                    <div class="product-details">
+                        <h3>Chocolate</h3>
+                        <p>Rich, decadent dark chocolate crafted from premium cocoa. For chocolate lovers.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$7.49</span>
+                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1557142046-c704a3adf364?w=800&auto=format&fit=crop&q=80" alt="Scoop of vanilla ice cream" loading="lazy"></div>
+                    <div class="product-details">
+                        <h3>Vanilla</h3>
+                        <p>Classic Madagascar vanilla bean, silky smooth and simply timeless.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$6.99</span>
+                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
                     <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&auto=format&fit=crop&q=80" alt="Strawberry soft serve ice cream cone" loading="lazy"></div>
                     <div class="product-details">
                         <h3>Strawberry Dream</h3>
@@ -350,37 +401,13 @@
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1625667893125-ca3b9492946c?w=800&auto=format&fit=crop&q=80" alt="Tropical mango soft serve ice cream" loading="lazy"></div>
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800&auto=format&fit=crop&q=80" alt="Mixed Neapolitan multi-pack of ice cream flavors" loading="lazy"></div>
                     <div class="product-details">
-                        <h3>Tropical Mango</h3>
-                        <p>Silky mango soft serve with a smooth coconut base. Pure tropical paradise.</p>
+                        <h3>Neapolitan Multi-Pack</h3>
+                        <p>Can't decide? Get all three: chocolate, vanilla, and strawberry in one mixed multi-pack.</p>
                     </div>
                     <div class="price-row">
-                        <span class="price">$6.99</span>
-                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1674595605055-fa617cb4f8d7?w=800&auto=format&fit=crop&q=80" alt="Scoop of dark chocolate ice cream" loading="lazy"></div>
-                    <div class="product-details">
-                        <h3>Dark Chocolate</h3>
-                        <p>Rich, decadent dark chocolate crafted from premium cocoa. For chocolate lovers.</p>
-                    </div>
-                    <div class="price-row">
-                        <span class="price">$7.49</span>
-                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1779829278703-1967d99a7a38?w=800&auto=format&fit=crop&q=80" alt="Green matcha soft serve ice cream cone" loading="lazy"></div>
-                    <div class="product-details">
-                        <h3>Matcha Latte</h3>
-                        <p>Creamy matcha soft serve with a subtle earthy flavor. A modern classic.</p>
-                    </div>
-                    <div class="price-row">
-                        <span class="price">$7.99</span>
+                        <span class="price">$18.99</span>
                         <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
                     </div>
                 </div>
@@ -396,7 +423,18 @@
 
             <div class="grid">
                 <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&auto=format&fit=crop&q=80" alt="Blank white t-shirt mockup" loading="lazy"></div>
+                    <div class="product-image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&auto=format&fit=crop&q=80" alt="White t-shirt with CKC ice cream cone logo" loading="lazy">
+                        <div class="ckc-logo-badge on-tee">
+                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="31" fill="#FF5A70" stroke="#FFFFFF" stroke-width="2"/>
+                                <circle cx="32" cy="24" r="9" fill="#FFFFFF"/>
+                                <path d="M23 26 L32 50 L41 26 Z" fill="#F2C572" stroke="#FFFFFF" stroke-width="1.5"/>
+                                <path d="M25 30 L32 46 L39 30" fill="none" stroke="#E0A94F" stroke-width="1" opacity="0.6"/>
+                            </svg>
+                            <span>CKC</span>
+                        </div>
+                    </div>
                     <div class="product-details">
                         <h3>CKC Logo Tee</h3>
                         <p>Soft, breathable cotton tee featuring our signature ice cream cone logo on the chest.</p>
@@ -408,7 +446,18 @@
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1691256676359-20e5c6d4bc92?w=800&auto=format&fit=crop&q=80" alt="Blank white baseball cap mockup" loading="lazy"></div>
+                    <div class="product-image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1691256676359-20e5c6d4bc92?w=800&auto=format&fit=crop&q=80" alt="White baseball cap with CKC ice cream cone logo" loading="lazy">
+                        <div class="ckc-logo-badge on-hat">
+                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="32" cy="32" r="31" fill="#FF5A70" stroke="#FFFFFF" stroke-width="2"/>
+                                <circle cx="32" cy="24" r="9" fill="#FFFFFF"/>
+                                <path d="M23 26 L32 50 L41 26 Z" fill="#F2C572" stroke="#FFFFFF" stroke-width="1.5"/>
+                                <path d="M25 30 L32 46 L39 30" fill="none" stroke="#E0A94F" stroke-width="1" opacity="0.6"/>
+                            </svg>
+                            <span>CKC</span>
+                        </div>
+                    </div>
                     <div class="product-details">
                         <h3>CKC Cone Hat</h3>
                         <p>Adjustable dad hat embroidered with the CKC ice cream cone logo. One size fits most.</p>
