@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cottage Kitchen Creamery | Premium Dairy-Free Soft Serve</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary: #FF5A70;      /* Vibrant Strawberry Coral */
-            --accent: #FFD2D7;       /* Soft Pink Tint */
-            --dark: #23262F;         /* Premium Warm Charcoal */
-            --text-muted: #64748B;   /* Slate Gray for body */
-            --bg-cream: #FAF9F5;     /* Warm Organic Off-White Background */
+            --primary: #FF5A70;
+            --primary-hover: #E04359;
+            --accent: #FFD2D7;
+            --dark: #23262F;
+            --text-muted: #64748B;
+            --bg-cream: #FAF9F5;
             --white: #FFFFFF;
-            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --border-light: rgba(0, 0, 0, 0.08);
+            --shadow-sm: 0 4px 12px rgba(35, 38, 47, 0.06);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.12);
+            --font-stack: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
         }
 
         * { 
@@ -26,32 +36,37 @@
         body { 
             background-color: var(--bg-cream); 
             color: var(--dark); 
-            line-height: 1.5; 
+            line-height: 1.6; 
+            overflow-x: hidden;
         }
 
-        /* Utility Layouts */
+        /* Focus States for Accessibility */
+        a:focus-visible, button:focus-visible, input:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 3px;
+        }
+
         .container { 
-            max-width: 1100px; 
+            max-width: 1120px; 
             margin: 0 auto; 
             padding: 0 1.5rem; 
         }
 
-        /* Clean Navigation Header */
+        /* Navigation Header */
         header { 
-            background: var(--white); 
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            backdrop-filter: blur(8px);
-            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--border-light);
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.88);
         }
         
         .header-container {
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            height: 70px;
+            height: 72px;
         }
 
         .logo { 
@@ -62,195 +77,301 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            text-decoration: none;
         }
 
-        nav { display: flex; gap: 2rem; }
-        nav a { 
+        nav { display: flex; gap: 1.5rem; align-items: center; }
+        
+        .nav-link { 
             text-decoration: none; 
             color: var(--dark); 
             font-weight: 600; 
             font-size: 0.95rem;
             cursor: pointer; 
-            transition: color 0.2s;
-            padding: 0.5rem 0;
+            transition: color 0.2s ease;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
         }
-        nav a:hover, nav a.active { color: var(--primary); }
+        
+        .nav-link:hover, .nav-link.active { 
+            color: var(--primary); 
+            background: rgba(255, 90, 112, 0.06);
+        }
 
-        /* Premium Buttons */
+        .cart-trigger {
+            position: relative;
+            background: var(--dark);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            padding: 0.6rem 1.25rem;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .cart-trigger:hover { transform: translateY(-1px); }
+
+        .cart-badge {
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 0.1rem 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        /* Hamburger Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            padding: 0.5rem;
+        }
+
+        /* Buttons */
         .btn { 
             display: inline-flex; 
             align-items: center;
             justify-content: center;
             background: var(--dark); 
             color: var(--white); 
-            padding: 0.9rem 2rem; 
+            padding: 0.85rem 1.8rem; 
             border: none; 
             border-radius: 50px; 
             font-weight: 700; 
-            font-size: 1rem;
+            font-size: 0.95rem;
             cursor: pointer; 
             text-decoration: none; 
             transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(35, 38, 47, 0.12);
+            box-shadow: var(--shadow-sm);
         }
+        
         .btn:hover { 
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(35, 38, 47, 0.18);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(35, 38, 47, 0.15);
         }
+        
         .btn-primary {
             background: var(--primary);
-            box-shadow: 0 4px 12px rgba(255, 90, 112, 0.2);
+            box-shadow: 0 4px 14px rgba(255, 90, 112, 0.25);
         }
+        
         .btn-primary:hover {
-            background: #E04359;
-            box-shadow: 0 6px 20px rgba(255, 90, 112, 0.3);
+            background: var(--primary-hover);
+            box-shadow: 0 6px 20px rgba(255, 90, 112, 0.35);
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
         }
 
         /* Section Controller */
         .tab-content { display: none; padding: 3rem 0 5rem; }
-        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* HERO SECTION */
+        /* Hero Section */
         .hero { 
             text-align: center; 
-            padding: 5rem 1rem 4rem; 
+            padding: 4rem 1rem 3rem; 
             max-width: 800px;
             margin: 0 auto;
         }
+        
         .badge {
             background: var(--accent);
             color: var(--primary);
-            padding: 0.35rem 1rem;
+            padding: 0.4rem 1.1rem;
             border-radius: 30px;
             font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.8px;
             display: inline-block;
             margin-bottom: 1.5rem;
         }
+        
         .hero h1 { 
             font-size: 3.5rem; 
             line-height: 1.15;
             font-weight: 800;
             letter-spacing: -1.5px;
             color: var(--dark); 
-            margin-bottom: 1.5rem; 
+            margin-bottom: 1.25rem; 
         }
+        
         .hero p { 
-            font-size: 1.25rem; 
+            font-size: 1.2rem; 
             color: var(--text-muted); 
-            margin-bottom: 2.5rem; 
+            margin-bottom: 2.25rem; 
             font-weight: 400;
         }
 
-        /* VALUE PROPOSITION GRID */
+        /* Value Proposition Grid */
         .grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 2rem; 
             margin-top: 1rem; 
         }
+        
         .card { 
             background: var(--white); 
-            padding: 2.5rem; 
+            padding: 2.25rem; 
             border-radius: 20px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02); 
-            border: 1px solid rgba(0,0,0,0.03);
-            transition: transform 0.2s;
+            box-shadow: var(--shadow-md); 
+            border: 1px solid var(--border-light);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .card:hover { transform: translateY(-4px); }
-        .card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.3px; }
-        .card p { color: var(--text-muted); font-size: 1rem; }
-        .card-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+        
+        .card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .card h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.3px; }
+        .card p { color: var(--text-muted); font-size: 0.98rem; }
+        .card-icon { font-size: 2.25rem; margin-bottom: 1.25rem; display: block; }
 
-        /* SHOP/ORDER GRID */
+        /* Shop / Merch Cards */
         .product-card {
             background: var(--white);
             border-radius: 24px;
             padding: 1.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
+        
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+        
         .product-image-placeholder {
             background: var(--bg-cream);
-            height: 240px;
+            height: 230px;
             border-radius: 16px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             overflow: hidden;
             position: relative;
         }
+        
         .product-image-placeholder img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.3s ease;
         }
-        .ckc-logo-badge {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+
+        .product-card:hover .product-image-placeholder img {
+            transform: scale(1.03);
         }
-        .ckc-logo-badge svg { display: block; }
-        .ckc-logo-badge span {
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: var(--white);
-            text-shadow: 0 1px 3px rgba(0,0,0,0.35);
-        }
-        .ckc-logo-badge.on-tee {
-            top: 34%;
-        }
-        .ckc-logo-badge.on-tee svg { width: 64px; height: 64px; }
-        .ckc-logo-badge.on-tee span { font-size: 0.7rem; margin-top: 2px; }
-        .ckc-logo-badge.on-hat {
-            top: 40%;
-        }
-        .ckc-logo-badge.on-hat svg { width: 46px; height: 46px; }
-        .ckc-logo-badge.on-hat span { font-size: 0.6rem; margin-top: 1px; }
-        .product-details h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+        .product-details h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; }
         .product-details p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        
         .price-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-top: auto;
             padding-top: 1rem;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
-        .price { font-size: 1.75rem; font-weight: 800; color: var(--dark); }
+        
+        .price { font-size: 1.5rem; font-weight: 800; color: var(--dark); }
 
-        /* SIGNUP / CONTACT FORM LAYOUT */
-        .form-wrapper {
+        /* Slide-over Cart Drawer */
+        .cart-drawer-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(35, 38, 47, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+        }
+
+        .cart-drawer-overlay.active { display: block; }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -420px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
             background: var(--white);
-            padding: 3rem;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.02);
-            max-width: 600px;
-            margin: 0 auto;
-            border: 1px solid rgba(0,0,0,0.03);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            z-index: 1001;
+            transition: right 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
         }
-        .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.5rem; }
-        .form-group label { font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        input, textarea { 
-            padding: 1rem; 
-            border: 2px solid #E2E8F0; 
-            border-radius: 12px; 
-            font-size: 1rem; 
-            color: var(--dark);
-            transition: border-color 0.2s;
-        }
-        input:focus, textarea:focus { border-color: var(--primary); outline: none; }
 
-        /* DIALOG POPUP MODAL (SMOKE TEST ENGINE) */
+        .cart-drawer.active { right: 0; }
+
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 { font-size: 1.25rem; font-weight: 800; }
+        .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
+
+        .cart-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .cart-item-info h4 { font-size: 1rem; font-weight: 700; }
+        .cart-item-info p { color: var(--text-muted); font-size: 0.85rem; }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-light);
+            background: var(--bg-cream);
+        }
+
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        /* Modal Overlay */
         .modal-overlay { 
             display: none; 
             position: fixed; 
@@ -264,50 +385,71 @@
             align-items: center; 
             z-index: 1000; 
         }
+
+        .modal-overlay.active { display: flex; }
+
         .modal { 
             background: var(--white); 
-            padding: 3.5rem 2.5rem 3rem; 
+            padding: 3rem 2rem 2.5rem; 
             border-radius: 28px; 
-            max-width: 480px; 
+            max-width: 460px; 
             width: 90%; 
             text-align: center; 
             position: relative; 
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: var(--shadow-lg);
             animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        
         @keyframes modalPop { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-        .modal h2 { font-size: 2rem; font-weight: 800; color: #FF4757; margin-bottom: 1rem; letter-spacing: -0.5px; }
-        .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.75rem; cursor: pointer; border: none; background: none; color: var(--text-muted); }
+        
+        .modal h2 { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 0.75rem; }
+        .modal-close { position: absolute; top: 1.25rem; right: 1.25rem; font-size: 1.5rem; cursor: pointer; border: none; background: none; color: var(--text-muted); }
+        
         .modal-email-row {
             display: flex;
             gap: 0.5rem;
             margin-top: 1.5rem;
         }
+
         .modal-email-row input {
             flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 0.95rem;
         }
-        .modal-email-row .btn {
-            padding: 0.9rem 1.5rem;
-            white-space: nowrap;
-        }
-        
-        /* FOOTER BRANDING */
+
+        /* Footer */
         footer {
             background: var(--white);
-            padding: 4rem 0;
-            border-top: 1px solid rgba(0,0,0,0.06);
+            padding: 3.5rem 0;
+            border-top: 1px solid var(--border-light);
             margin-top: 4rem;
             text-align: center;
         }
-        .footer-logo { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 1rem; }
-        .footer-text { font-size: 0.9rem; color: var(--text-muted); }
+        
+        .footer-logo { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
+        .footer-text { font-size: 0.875rem; color: var(--text-muted); }
 
-        /* Responsive scaling adjustments */
+        /* Mobile Responsive Adjustments */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.25rem; }
-            nav { display: none; } /* Kept clean for single-page utility on mobile */
-            .header-container { justify-content: center; }
-            .form-wrapper { padding: 1.5rem; }
+            .hero h1 { font-size: 2.4rem; }
+            .mobile-menu-btn { display: block; }
+            
+            nav {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: var(--shadow-md);
+                border-bottom: 1px solid var(--border-light);
+            }
+
+            nav.open { display: flex; }
             .modal-email-row { flex-direction: column; }
         }
     </style>
@@ -317,11 +459,18 @@
     <!-- Header Navigation Shell -->
     <header>
         <div class="container header-container">
-            <div class="logo">🍦 cottage kitchen creamery</div>
-            <nav>
-                <a onclick="switchTab('home')" id="nav-home" class="active">Home Base</a>
-                <a onclick="switchTab('order')" id="nav-order">Shop Bundles</a>
-                <a onclick="switchTab('merch')" id="nav-merch">Merch</a>
+            <a class="logo" href="#" onclick="switchTab('home')">🍦 cottage kitchen creamery</a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">☰</button>
+
+            <nav id="main-nav" role="tablist">
+                <button onclick="switchTab('home')" id="nav-home" class="nav-link active" role="tab" aria-selected="true" aria-controls="home">Home Base</button>
+                <button onclick="switchTab('order')" id="nav-order" class="nav-link" role="tab" aria-selected="false" aria-controls="order">Shop Flavors</button>
+                <button onclick="switchTab('merch')" id="nav-merch" class="nav-link" role="tab" aria-selected="false" aria-controls="merch">Merch</button>
+                
+                <button class="cart-trigger" onclick="toggleCartDrawer()" aria-label="View Shopping Cart">
+                    🛒 Cart <span class="cart-badge" id="cart-count">0</span>
+                </button>
             </nav>
         </div>
     </header>
@@ -329,154 +478,146 @@
     <main class="container">
         
         <!-- HOME TAB CONTENT -->
-        <section id="home" class="tab-content active">
+        <section id="home" class="tab-content active" role="tabpanel" aria-labelledby="nav-home">
             <div class="hero">
-                <span class="badge">✨ Premium Quality</span>
-                <h1>Cottage Kitchen Creamery</h1>
-                <p>Handcrafted, dairy-free soft serve made fresh to order. Indulge in guilt-free creaminess.</p>
-                <button class="btn btn-primary" onclick="switchTab('order')">Explore Our Flavors</button>
+                <span class="badge">✨ Small-Batch & Handcrafted</span>
+                <h1>Plant-Based Soft Serve, Redefined.</h1>
+                <p>Indulgently creamy, 100% dairy-free soft serve made fresh daily with organic ingredients.</p>
+                <button class="btn btn-primary" onclick="switchTab('order')">Explore Flavors</button>
             </div>
 
             <div class="grid">
                 <div class="card">
                     <span class="card-icon">🥑</span>
                     <h3>100% Dairy-Free</h3>
-                    <p>Creamy texture without any dairy. Perfect for those with lactose sensitivities or plant-based preferences.</p>
+                    <p>Rich, velvety textures without dairy. Formulated for plant-based lifestyles and lactose sensitivity.</p>
                 </div>
                 <div class="card">
                     <span class="card-icon">⚡</span>
-                    <h3>Made Fresh Daily</h3>
-                    <p>No artificial preservatives. Every batch is prepared to order for maximum flavor and quality.</p>
+                    <h3>Churned Fresh</h3>
+                    <p>Zero artificial preservatives. Small batches prepared daily to maximize taste and aroma.</p>
                 </div>
                 <div class="card">
                     <span class="card-icon">🌿</span>
-                    <h3>Natural Ingredients</h3>
-                    <p>We source premium, organic ingredients to create the most delicious and wholesome soft serve.</p>
+                    <h3>Organic Ingredients</h3>
+                    <p>Sourced from sustainable farms to ensure a clean, wholesome treat you can feel good about.</p>
                 </div>
             </div>
         </section>
 
         <!-- ORDER/SHOP TAB CONTENT -->
-        <section id="order" class="tab-content">
+        <section id="order" class="tab-content" role="tabpanel" aria-labelledby="nav-order">
             <div class="hero">
-                <h1>Shop Our Flavors</h1>
-                <p>Choose from our signature blends and seasonal specials</p>
+                <h1>Signature Flavors</h1>
+                <p>Artisanal soft-serve scoops and multi-packs delivered right to your door.</p>
             </div>
 
             <div class="grid">
                 <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1674595605055-fa617cb4f8d7?w=800&auto=format&fit=crop&q=80" alt="Scoop of dark chocolate ice cream" loading="lazy"></div>
+                    <div class="product-image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1674595605055-fa617cb4f8d7?w=800&auto=format&fit=crop&q=80" alt="Dark chocolate soft serve scoop" loading="lazy">
+                    </div>
                     <div class="product-details">
-                        <h3>Chocolate</h3>
-                        <p>Rich, decadent dark chocolate crafted from premium cocoa. For chocolate lovers.</p>
+                        <h3>Dark Cocoa Fudge</h3>
+                        <p>Decadent cacao blend delivering a deep, velvety dark chocolate experience.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$7.49</span>
-                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Dark Cocoa Fudge', 7.49)">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1557142046-c704a3adf364?w=800&auto=format&fit=crop&q=80" alt="Scoop of vanilla ice cream" loading="lazy"></div>
+                    <div class="product-image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1557142046-c704a3adf364?w=800&auto=format&fit=crop&q=80" alt="Madagascar vanilla bean soft serve" loading="lazy">
+                    </div>
                     <div class="product-details">
-                        <h3>Vanilla</h3>
-                        <p>Classic Madagascar vanilla bean, silky smooth and simply timeless.</p>
+                        <h3>Madagascar Vanilla</h3>
+                        <p>Infused with real vanilla bean pods for a classic, smooth, and aromatic finish.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$6.99</span>
-                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Madagascar Vanilla', 6.99)">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&auto=format&fit=crop&q=80" alt="Strawberry soft serve ice cream cone" loading="lazy"></div>
+                    <div class="product-image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&auto=format&fit=crop&q=80" alt="Strawberry dream soft serve" loading="lazy">
+                    </div>
                     <div class="product-details">
                         <h3>Strawberry Dream</h3>
-                        <p>Fresh strawberry with a hint of vanilla. A classic favorite that never disappoints.</p>
+                        <p>Real organic strawberries blended with subtle vanilla cream notes.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$6.99</span>
-                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Strawberry Dream', 6.99)">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800&auto=format&fit=crop&q=80" alt="Mixed Neapolitan multi-pack of ice cream flavors" loading="lazy"></div>
+                    <div class="product-image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800&auto=format&fit=crop&q=80" alt="Neapolitan multi-pack tubs" loading="lazy">
+                    </div>
                     <div class="product-details">
                         <h3>Neapolitan Multi-Pack</h3>
-                        <p>Can't decide? Get all three: chocolate, vanilla, and strawberry in one mixed multi-pack.</p>
+                        <p>Includes one pint of each core flavor: Dark Cocoa, Vanilla Bean, and Strawberry Dream.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$18.99</span>
-                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Neapolitan Multi-Pack', 18.99)">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- MERCH TAB CONTENT -->
-        <section id="merch" class="tab-content">
+        <section id="merch" class="tab-content" role="tabpanel" aria-labelledby="nav-merch">
             <div class="hero">
-                <h1>CKC Merch</h1>
-                <p>Rep the cone. Official Cottage Kitchen Creamery gear, coming soon.</p>
+                <h1>Official Gear</h1>
+                <p>Rep the shop with high-quality apparel and kitchenware.</p>
             </div>
 
             <div class="grid">
                 <div class="product-card">
                     <div class="product-image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&auto=format&fit=crop&q=80" alt="White t-shirt with CKC ice cream cone logo" loading="lazy">
-                        <div class="ckc-logo-badge on-tee">
-                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="32" cy="32" r="31" fill="#FF5A70" stroke="#FFFFFF" stroke-width="2"/>
-                                <circle cx="32" cy="24" r="9" fill="#FFFFFF"/>
-                                <path d="M23 26 L32 50 L41 26 Z" fill="#F2C572" stroke="#FFFFFF" stroke-width="1.5"/>
-                                <path d="M25 30 L32 46 L39 30" fill="none" stroke="#E0A94F" stroke-width="1" opacity="0.6"/>
-                            </svg>
-                            <span>CKC</span>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&auto=format&fit=crop&q=80" alt="CKC Cotton Tee" loading="lazy">
                     </div>
                     <div class="product-details">
-                        <h3>CKC Logo Tee</h3>
-                        <p>Soft, breathable cotton tee featuring our signature ice cream cone logo on the chest.</p>
+                        <h3>CKC Vintage Tee</h3>
+                        <p>100% organic heavy-cotton tee featuring the soft-serve chest motif.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$24.99</span>
-                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                        <button class="btn btn-primary btn-sm" onclick="showStockModal()">Notify Me</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1691256676359-20e5c6d4bc92?w=800&auto=format&fit=crop&q=80" alt="White baseball cap with CKC ice cream cone logo" loading="lazy">
-                        <div class="ckc-logo-badge on-hat">
-                            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-                                <circle cx="32" cy="32" r="31" fill="#FF5A70" stroke="#FFFFFF" stroke-width="2"/>
-                                <circle cx="32" cy="24" r="9" fill="#FFFFFF"/>
-                                <path d="M23 26 L32 50 L41 26 Z" fill="#F2C572" stroke="#FFFFFF" stroke-width="1.5"/>
-                                <path d="M25 30 L32 46 L39 30" fill="none" stroke="#E0A94F" stroke-width="1" opacity="0.6"/>
-                            </svg>
-                            <span>CKC</span>
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1691256676359-20e5c6d4bc92?w=800&auto=format&fit=crop&q=80" alt="CKC Baseball Cap" loading="lazy">
                     </div>
                     <div class="product-details">
-                        <h3>CKC Cone Hat</h3>
-                        <p>Adjustable dad hat embroidered with the CKC ice cream cone logo. One size fits most.</p>
+                        <h3>Embroidered Dad Hat</h3>
+                        <p>Unstructured 6-panel cap featuring our signature embroidered cone emblem.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$19.99</span>
-                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                        <button class="btn btn-primary btn-sm" onclick="showStockModal()">Notify Me</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1532537455099-5025af0bac65?w=800&auto=format&fit=crop&q=80" alt="Stainless steel ice cream scoop" loading="lazy"></div>
+                    <div class="product-image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1532537455099-5025af0bac65?w=800&auto=format&fit=crop&q=80" alt="Stainless steel ice cream scoop" loading="lazy">
+                    </div>
                     <div class="product-details">
-                        <h3>CKC Scoop</h3>
-                        <p>Sturdy stainless steel ice cream scoop stamped with the CKC cone logo. Kitchen essential.</p>
+                        <h3>Pro Scoop</h3>
+                        <p>Heavy-duty stainless steel build designed specifically for tough frozen desserts.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$14.99</span>
-                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                        <button class="btn btn-primary btn-sm" onclick="showStockModal()">Notify Me</button>
                     </div>
                 </div>
             </div>
@@ -484,90 +625,161 @@
 
     </main>
 
-    <!-- Modal for confirmations -->
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal">
-            <button class="modal-close" onclick="closeModal()">✕</button>
-            <h2 id="modal-title">Success!</h2>
-            <p id="modal-message">Thank you for signing up. We'll be in touch soon!</p>
-            <div class="modal-email-row" id="modal-email-row" style="display: none;">
-                <input type="email" id="modal-email-input" placeholder="your@email.com">
-                <button class="btn btn-primary" onclick="submitStockWaitlist()">Sign Up</button>
+    <!-- Shopping Cart Drawer -->
+    <div class="cart-drawer-overlay" id="cart-overlay" onclick="toggleCartDrawer()"></div>
+    <div class="cart-drawer" id="cart-drawer" aria-label="Shopping Cart Drawer">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-btn" onclick="toggleCartDrawer()" aria-label="Close cart">&times;</button>
+        </div>
+        <div class="cart-body" id="cart-items">
+            <p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">$0.00</span>
             </div>
-            <button class="btn btn-primary" id="modal-ok-btn" onclick="closeModal()" style="margin-top: 1.5rem;">Got It</button>
+            <button class="btn btn-primary" style="width: 100%;" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Notification Modal -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" role="dialog" aria-modal="true">
+            <button class="modal-close" onclick="closeModal()" aria-label="Close modal">✕</button>
+            <h2 id="modal-title">Success!</h2>
+            <p id="modal-message">Thank you for visiting Cottage Kitchen Creamery.</p>
+            <div class="modal-email-row" id="modal-email-row" style="display: none;">
+                <input type="email" id="modal-email-input" placeholder="Enter your email address">
+                <button class="btn btn-primary btn-sm" onclick="submitStockWaitlist()">Join Waitlist</button>
+            </div>
+            <button class="btn btn-primary" id="modal-ok-btn" onclick="closeModal()" style="margin-top: 1.5rem;">Dismiss</button>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
         <div class="footer-logo">🍦 Cottage Kitchen Creamery</div>
-        <p class="footer-text">© 2024 Cottage Kitchen Creamery. All rights reserved. | Premium Dairy-Free Soft Serve</p>
+        <p class="footer-text">© 2026 Cottage Kitchen Creamery. Handcrafted Dairy-Free Delights.</p>
     </footer>
 
     <script>
-        // Tab Switching Logic
+        // State Management
+        let cart = [];
+
+        // Tab Navigation
         function switchTab(tabName) {
-            // Hide all tab content
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                link.setAttribute('aria-selected', 'false');
+            });
 
-            // Remove active class from all nav links
-            const navLinks = document.querySelectorAll('nav a');
-            navLinks.forEach(link => link.classList.remove('active'));
-
-            // Show the selected tab
             const selectedTab = document.getElementById(tabName);
-            if (selectedTab) {
+            const activeNav = document.getElementById('nav-' + tabName);
+
+            if (selectedTab && activeNav) {
                 selectedTab.classList.add('active');
+                activeNav.classList.add('active');
+                activeNav.setAttribute('aria-selected', 'true');
             }
 
-            // Add active class to the clicked nav link
-            const clickedNav = document.getElementById('nav-' + tabName);
-            if (clickedNav) {
-                clickedNav.classList.add('active');
-            }
+            // Close mobile menu if open
+            document.getElementById('main-nav').classList.remove('open');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Modal Functions
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('open');
+        }
+
+        // Cart Drawer Controls
+        function toggleCartDrawer() {
+            document.getElementById('cart-drawer').classList.toggle('active');
+            document.getElementById('cart-overlay').classList.toggle('active');
+        }
+
+        // Cart Logic
+        function addToCart(title, price) {
+            const existingItem = cart.find(item => item.title === title);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ title, price, quantity: 1 });
+            }
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        function removeFromCart(title) {
+            cart = cart.filter(item => item.title !== title);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartCountBadge = document.getElementById('cart-count');
+            const cartSubtotal = document.getElementById('cart-subtotal');
+
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalCost = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            cartCountBadge.textContent = totalItems;
+            cartSubtotal.textContent = `$${totalCost.toFixed(2)}`;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `<p style="text-align: center; color: var(--text-muted); margin-top: 2rem;">Your cart is empty.</p>`;
+                return;
+            }
+
+            cartItemsContainer.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-info">
+                        <h4>${item.title}</h4>
+                        <p>$${item.price.toFixed(2)} x ${item.quantity}</p>
+                    </div>
+                    <button onclick="removeFromCart('${item.title}')" style="background: none; border: none; color: var(--primary); cursor: pointer; font-size: 0.85rem; font-weight: 700;">Remove</button>
+                </div>
+            `).join('');
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            showModal('Order Received!', 'Thank you for your order. We are preparing your fresh dairy-free scoop batch!');
+            cart = [];
+            updateCartUI();
+            toggleCartDrawer();
+        }
+
+        // Modal Helpers
         function showModal(title, message) {
             document.getElementById('modal-title').textContent = title;
             document.getElementById('modal-message').textContent = message;
             document.getElementById('modal-email-row').style.display = 'none';
             document.getElementById('modal-ok-btn').style.display = 'inline-flex';
-            document.getElementById('modal-overlay').style.display = 'flex';
+            document.getElementById('modal-overlay').classList.add('active');
         }
 
         function closeModal() {
-            document.getElementById('modal-overlay').style.display = 'none';
+            document.getElementById('modal-overlay').classList.remove('active');
         }
 
-        // Out-of-stock / waitlist upsell modal (shown on Add to Cart)
         function showStockModal() {
-            document.getElementById('modal-title').textContent = 'Out of Stock';
-            document.getElementById('modal-message').textContent = "Sorry, our limited release stock is currently unavailable. Sign up for our waitlist and get $5 off your next order!";
+            document.getElementById('modal-title').textContent = 'Limited Release';
+            document.getElementById('modal-message').textContent = 'This item is currently out of stock. Join our drop list for immediate updates.';
             document.getElementById('modal-email-row').style.display = 'flex';
             document.getElementById('modal-ok-btn').style.display = 'none';
-            document.getElementById('modal-email-input').value = '';
-            document.getElementById('modal-overlay').style.display = 'flex';
+            document.getElementById('modal-overlay').classList.add('active');
         }
 
         function submitStockWaitlist() {
             const email = document.getElementById('modal-email-input').value;
-            if (!email) {
-                document.getElementById('modal-email-input').focus();
-                return;
-            }
-            // TODO: wire up real email capture / dropshipping integration later
-            showModal('You\'re On the List!', `Thanks! We'll email ${email} as soon as this item — and your $5 off — is ready.`);
+            if (!email) return;
+            showModal('Added to Waitlist', `We will notify ${email} as soon as restock is available.`);
         }
-
-        // Close modal when clicking outside
-        document.getElementById('modal-overlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
     </script>
-
 </body>
 </html>
