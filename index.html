@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantry Nice Cream Co. | Premium 60-Second Dairy-Free Soft Serve</title>
+    <title>Cottage Kitchen Creamery | Premium Dairy-Free Soft Serve</title>
     <style>
         :root {
             --primary: #FF5A70;      /* Vibrant Strawberry Coral */
@@ -285,3 +285,189 @@
 
     <main class="container">
         
+        <!-- HOME TAB CONTENT -->
+        <section id="home" class="tab-content active">
+            <div class="hero">
+                <span class="badge">✨ Premium Quality</span>
+                <h1>Cottage Kitchen Creamery</h1>
+                <p>Handcrafted, dairy-free soft serve made fresh to order. Indulge in guilt-free creaminess.</p>
+                <button class="btn btn-primary" onclick="switchTab('order')">Explore Our Flavors</button>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <span class="card-icon">🥑</span>
+                    <h3>100% Dairy-Free</h3>
+                    <p>Creamy texture without any dairy. Perfect for those with lactose sensitivities or plant-based preferences.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">⚡</span>
+                    <h3>Made Fresh Daily</h3>
+                    <p>No artificial preservatives. Every batch is prepared to order for maximum flavor and quality.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🌿</span>
+                    <h3>Natural Ingredients</h3>
+                    <p>We source premium, organic ingredients to create the most delicious and wholesome soft serve.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORDER/SHOP TAB CONTENT -->
+        <section id="order" class="tab-content">
+            <div class="hero">
+                <h1>Shop Our Flavors</h1>
+                <p>Choose from our signature blends and seasonal specials</p>
+            </div>
+
+            <div class="grid">
+                <div class="product-card">
+                    <div class="product-image-placeholder">🍓</div>
+                    <div class="product-details">
+                        <h3>Strawberry Dream</h3>
+                        <p>Fresh strawberry with a hint of vanilla. A classic favorite that never disappoints.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$6.99</span>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-placeholder">🍌</div>
+                    <div class="product-details">
+                        <h3>Tropical Mango</h3>
+                        <p>Silky mango soft serve with a smooth coconut base. Pure tropical paradise.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$6.99</span>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-placeholder">🍫</div>
+                    <div class="product-details">
+                        <h3>Dark Chocolate</h3>
+                        <p>Rich, decadent dark chocolate crafted from premium cocoa. For chocolate lovers.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$7.49</span>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-placeholder">🍵</div>
+                    <div class="product-details">
+                        <h3>Matcha Latte</h3>
+                        <p>Creamy matcha soft serve with a subtle earthy flavor. A modern classic.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$7.99</span>
+                        <button class="btn btn-primary">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT/WAITLIST TAB CONTENT -->
+        <section id="contact" class="tab-content">
+            <div class="hero">
+                <h1>Join the Flavor Waitlist</h1>
+                <p>Be the first to know about our new seasonal flavors and exclusive releases</p>
+            </div>
+
+            <div class="form-wrapper">
+                <form id="waitlist-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Favorite Flavor Ideas</label>
+                        <textarea id="message" name="message" rows="4" placeholder="Tell us what flavors you'd love to see..." style="resize: vertical;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Join the Waitlist</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for confirmations -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h2 id="modal-title">Success!</h2>
+            <p id="modal-message">Thank you for signing up. We'll be in touch soon!</p>
+            <button class="btn btn-primary" onclick="closeModal()" style="margin-top: 1.5rem;">Got It</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">🍦 Cottage Kitchen Creamery</div>
+        <p class="footer-text">© 2024 Cottage Kitchen Creamery. All rights reserved. | Premium Dairy-Free Soft Serve</p>
+    </footer>
+
+    <script>
+        // Tab Switching Logic
+        function switchTab(tabName) {
+            // Hide all tab content
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            // Show the selected tab
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+
+            // Add active class to the clicked nav link
+            const clickedNav = document.getElementById('nav-' + tabName);
+            if (clickedNav) {
+                clickedNav.classList.add('active');
+            }
+        }
+
+        // Modal Functions
+        function showModal(title, message) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-message').textContent = message;
+            document.getElementById('modal-overlay').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').style.display = 'none';
+        }
+
+        // Form Submission
+        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            showModal('Welcome!', `Thanks for joining ${name}! You're on the waitlist for our latest flavors.`);
+            this.reset();
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('modal-overlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
