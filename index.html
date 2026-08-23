@@ -40,7 +40,7 @@
             overflow-x: hidden;
         }
 
-        /* Focus States for Accessibility */
+        /* Focus States */
         a:focus-visible, button:focus-visible, input:focus-visible {
             outline: 2px solid var(--primary);
             outline-offset: 3px;
@@ -52,7 +52,7 @@
             padding: 0 1.5rem; 
         }
 
-        /* Navigation Header */
+        /* Header & Navigation */
         header { 
             position: sticky;
             top: 0;
@@ -126,7 +126,6 @@
             font-size: 0.75rem;
         }
 
-        /* Hamburger Menu */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -180,70 +179,138 @@
         .tab-content.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Hero Section */
-        .hero { 
-            text-align: center; 
-            padding: 4rem 1rem 3rem; 
-            max-width: 800px;
+        /* HOME / NICE CREAM PAGE STYLES */
+        .hero-nice-cream {
+            text-align: center;
+            padding: 3rem 1rem;
+            max-width: 900px;
             margin: 0 auto;
         }
-        
-        .badge {
-            background: var(--accent);
-            color: var(--primary);
-            padding: 0.4rem 1.1rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-        
-        .hero h1 { 
-            font-size: 3.5rem; 
-            line-height: 1.15;
+
+        .hero-nice-cream h1 {
+            font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -1.5px;
-            color: var(--dark); 
-            margin-bottom: 1.25rem; 
-        }
-        
-        .hero p { 
-            font-size: 1.2rem; 
-            color: var(--text-muted); 
-            margin-bottom: 2.25rem; 
-            font-weight: 400;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
         }
 
-        /* Value Proposition Grid */
+        .hero-nice-cream p.one-liner {
+            font-size: 1.35rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        /* Comic Strip Grid */
+        .comic-strip {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .comic-panel {
+            background: var(--white);
+            border: 3px solid var(--dark);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 6px 6px 0px var(--dark);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .comic-step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--primary);
+            color: var(--white);
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 0.2rem 0.8rem;
+            border-radius: 12px;
+            border: 2px solid var(--dark);
+            text-transform: uppercase;
+        }
+
+        .comic-illustration {
+            width: 100%;
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1rem 0;
+        }
+
+        .comic-caption {
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--dark);
+        }
+
+        /* Section Separator */
+        .section-divider {
+            margin: 5rem 0 3rem;
+            text-align: center;
+        }
+
+        .section-divider h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-divider p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Problems Grid */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .problem-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-md);
+        }
+
+        .problem-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .problem-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Product & Merch Cards */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 2rem; 
             margin-top: 1rem; 
         }
-        
-        .card { 
-            background: var(--white); 
-            padding: 2.25rem; 
-            border-radius: 20px; 
-            box-shadow: var(--shadow-md); 
-            border: 1px solid var(--border-light);
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        
-        .card:hover { 
-            transform: translateY(-4px); 
-            box-shadow: var(--shadow-lg);
-        }
-        
-        .card h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.75rem; letter-spacing: -0.3px; }
-        .card p { color: var(--text-muted); font-size: 0.98rem; }
-        .card-icon { font-size: 2.25rem; margin-bottom: 1.25rem; display: block; }
 
-        /* Shop / Merch Cards */
         .product-card {
             background: var(--white);
             border-radius: 24px;
@@ -253,12 +320,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.25s ease, box-shadow 0.25s ease;
-        }
-        
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
         }
         
         .product-image-placeholder {
@@ -267,7 +328,6 @@
             border-radius: 16px;
             margin-bottom: 1.25rem;
             overflow: hidden;
-            position: relative;
         }
         
         .product-image-placeholder img {
@@ -275,11 +335,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover .product-image-placeholder img {
-            transform: scale(1.03);
         }
 
         .product-details h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; }
@@ -296,14 +351,12 @@
         
         .price { font-size: 1.5rem; font-weight: 800; color: var(--dark); }
 
-        /* Slide-over Cart Drawer */
+        /* Cart Drawer */
         .cart-drawer-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: rgba(35, 38, 47, 0.5);
             backdrop-filter: blur(4px);
             z-index: 1000;
@@ -313,17 +366,13 @@
 
         .cart-drawer {
             position: fixed;
-            top: 0;
-            right: -420px;
-            width: 100%;
-            max-width: 400px;
-            height: 100%;
+            top: 0; right: -420px;
+            width: 100%; max-width: 400px; height: 100%;
             background: var(--white);
             box-shadow: -10px 0 30px rgba(0,0,0,0.1);
             z-index: 1001;
             transition: right 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
+            display: flex; flex-direction: column;
         }
 
         .cart-drawer.active { right: 0; }
@@ -331,26 +380,17 @@
         .cart-header {
             padding: 1.5rem;
             border-bottom: 1px solid var(--border-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
         .cart-header h2 { font-size: 1.25rem; font-weight: 800; }
         .close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
 
-        .cart-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1.5rem;
-        }
+        .cart-body { flex: 1; overflow-y: auto; padding: 1.5rem; }
 
         .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 1rem;
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 1rem; padding-bottom: 1rem;
             border-bottom: 1px solid var(--border-light);
         }
 
@@ -364,25 +404,17 @@
         }
 
         .cart-total-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 1.1rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+            display: flex; justify-content: space-between;
+            font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem;
         }
 
         /* Modal Overlay */
         .modal-overlay { 
-            display: none; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
+            display: none; position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(35, 38, 47, 0.6); 
             backdrop-filter: blur(4px);
-            justify-content: center; 
-            align-items: center; 
+            justify-content: center; align-items: center; 
             z-index: 1000; 
         }
 
@@ -392,10 +424,8 @@
             background: var(--white); 
             padding: 3rem 2rem 2.5rem; 
             border-radius: 28px; 
-            max-width: 460px; 
-            width: 90%; 
-            text-align: center; 
-            position: relative; 
+            max-width: 460px; width: 90%; 
+            text-align: center; position: relative; 
             box-shadow: var(--shadow-lg);
             animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -406,16 +436,12 @@
         .modal-close { position: absolute; top: 1.25rem; right: 1.25rem; font-size: 1.5rem; cursor: pointer; border: none; background: none; color: var(--text-muted); }
         
         .modal-email-row {
-            display: flex;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
+            display: flex; gap: 0.5rem; margin-top: 1.5rem;
         }
 
         .modal-email-row input {
-            flex: 1;
-            padding: 0.8rem 1rem;
-            border: 2px solid #E2E8F0;
-            border-radius: 12px;
+            flex: 1; padding: 0.8rem 1rem;
+            border: 2px solid #E2E8F0; border-radius: 12px;
             font-size: 0.95rem;
         }
 
@@ -431,17 +457,15 @@
         .footer-logo { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 0.5rem; }
         .footer-text { font-size: 0.875rem; color: var(--text-muted); }
 
-        /* Mobile Responsive Adjustments */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.4rem; }
+            .hero-nice-cream h1 { font-size: 2.2rem; }
+            .comic-strip { grid-template-columns: 1fr; }
             .mobile-menu-btn { display: block; }
             
             nav {
                 display: none;
                 position: absolute;
-                top: 72px;
-                left: 0;
-                width: 100%;
+                top: 72px; left: 0; width: 100%;
                 background: var(--white);
                 flex-direction: column;
                 padding: 1.5rem;
@@ -450,7 +474,6 @@
             }
 
             nav.open { display: flex; }
-            .modal-email-row { flex-direction: column; }
         }
     </style>
 </head>
@@ -464,8 +487,8 @@
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">☰</button>
 
             <nav id="main-nav" role="tablist">
-                <button onclick="switchTab('home')" id="nav-home" class="nav-link active" role="tab" aria-selected="true" aria-controls="home">Home Base</button>
-                <button onclick="switchTab('order')" id="nav-order" class="nav-link" role="tab" aria-selected="false" aria-controls="order">Shop Flavors</button>
+                <button onclick="switchTab('home')" id="nav-home" class="nav-link active" role="tab" aria-selected="true" aria-controls="home">Nice Cream</button>
+                <button onclick="switchTab('order')" id="nav-order" class="nav-link" role="tab" aria-selected="false" aria-controls="order">Buy Nice</button>
                 <button onclick="switchTab('merch')" id="nav-merch" class="nav-link" role="tab" aria-selected="false" aria-controls="merch">Merch</button>
                 
                 <button class="cart-trigger" onclick="toggleCartDrawer()" aria-label="View Shopping Cart">
@@ -477,39 +500,108 @@
 
     <main class="container">
         
-        <!-- HOME TAB CONTENT -->
+        <!-- NICE CREAM HOME TAB CONTENT -->
         <section id="home" class="tab-content active" role="tabpanel" aria-labelledby="nav-home">
-            <div class="hero">
-                <span class="badge">✨ Small-Batch & Handcrafted</span>
-                <h1>Plant-Based Soft Serve, Redefined.</h1>
-                <p>Indulgently creamy, 100% dairy-free soft serve made fresh daily with organic ingredients.</p>
-                <button class="btn btn-primary" onclick="switchTab('order')">Explore Flavors</button>
+            
+            <!-- UPPER SECTION: INTRODUCTION & STYLIZED COMIC -->
+            <div class="hero-nice-cream">
+                <span class="badge">✨ The Pure Fruit Treat</span>
+                <h1>What is Nice Cream?</h1>
+                <p class="one-liner">Nice cream is a wholesome, 100% fruit-based soft serve created by whipping frozen fruit into a rich, luscious dessert with no added sugar or dairy.</p>
+
+                <!-- Stylized Comic Workflow -->
+                <div class="comic-strip">
+                    <!-- Panel 1: Frozen Fruit -->
+                    <div class="comic-panel">
+                        <span class="comic-step-number">Step 1</span>
+                        <div class="comic-illustration">
+                            <svg width="120" height="120" viewBox="0 0 100 100">
+                                <circle cx="35" cy="55" r="18" fill="#FF5A70" stroke="#23262F" stroke-width="3"/>
+                                <path d="M 35 37 Q 40 25 50 30" stroke="#23262F" stroke-width="3" fill="none"/>
+                                <circle cx="65" cy="65" r="14" fill="#FFD2D7" stroke="#23262F" stroke-width="3"/>
+                                <polygon points="50,25 65,35 55,50" fill="#FFEAA7" stroke="#23262F" stroke-width="3"/>
+                                <!-- Sparkles/Ice Crystals -->
+                                <path d="M 20 25 L 25 30 M 25 25 L 20 30" stroke="#23262F" stroke-width="2"/>
+                                <path d="M 75 25 L 80 30 M 80 25 L 75 30" stroke="#23262F" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="comic-caption">Ripe Frozen Fruit</div>
+                    </div>
+
+                    <!-- Panel 2: High-Speed Blender -->
+                    <div class="comic-panel">
+                        <span class="comic-step-number">Step 2</span>
+                        <div class="comic-illustration">
+                            <svg width="120" height="120" viewBox="0 0 100 100">
+                                <!-- Blender Base -->
+                                <rect x="30" y="65" width="40" height="25" rx="4" fill="#23262F"/>
+                                <!-- Blender Jar -->
+                                <polygon points="25,20 75,20 65,65 35,65" fill="rgba(255, 210, 215, 0.4)" stroke="#23262F" stroke-width="3"/>
+                                <!-- Action Lines -->
+                                <path d="M 35 35 Q 50 45 65 35 M 38 45 Q 50 55 62 45" stroke="#FF5A70" stroke-width="3" fill="none"/>
+                                <path d="M 15 30 L 22 35 M 85 30 L 78 35" stroke="#23262F" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="comic-caption">High-Speed Blend</div>
+                    </div>
+
+                    <!-- Panel 3: Soft Serve Output -->
+                    <div class="comic-panel">
+                        <span class="comic-step-number">Step 3</span>
+                        <div class="comic-illustration">
+                            <svg width="120" height="120" viewBox="0 0 100 100">
+                                <!-- Cone -->
+                                <polygon points="35,60 65,60 50,95" fill="#F2C572" stroke="#23262F" stroke-width="3"/>
+                                <!-- Swirl -->
+                                <path d="M 35 60 Q 30 50 50 48 Q 70 50 65 60 Z" fill="#FFD2D7" stroke="#23262F" stroke-width="3"/>
+                                <path d="M 38 48 Q 35 35 50 33 Q 65 35 62 48 Z" fill="#FF5A70" stroke="#23262F" stroke-width="3"/>
+                                <path d="M 42 33 Q 40 22 50 20 Q 60 22 58 33 Z" fill="#FFD2D7" stroke="#23262F" stroke-width="3"/>
+                            </svg>
+                        </div>
+                        <div class="comic-caption">Velvety Soft Serve!</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="grid">
-                <div class="card">
-                    <span class="card-icon">🥑</span>
-                    <h3>100% Dairy-Free</h3>
-                    <p>Rich, velvety textures without dairy. Formulated for plant-based lifestyles and lactose sensitivity.</p>
+            <!-- LOWER SECTION: THE PROBLEM WITH MAKING IT AT HOME -->
+            <div class="section-divider">
+                <h2>The Homemade Dilemma</h2>
+                <p>Making nice cream at home sounds simple, but maintaining the perfect daily routine comes with real hurdles.</p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>⏳ Ingredients Age Quickly</h3>
+                    <p>Bananas and fruits go from perfectly ripe to overly oxidized within days, resulting in inconsistent flavor, brown hues, and unwanted sour notes.</p>
                 </div>
-                <div class="card">
-                    <span class="card-icon">⚡</span>
-                    <h3>Churned Fresh</h3>
-                    <p>Zero artificial preservatives. Small batches prepared daily to maximize taste and aroma.</p>
+
+                <div class="problem-card">
+                    <h3>🛒 Stock Issues at Home</h3>
+                    <p>Keeping a steady supply of pre-peeled, perfectly frozen fruit stocked in a crowded freezer takes up valuable space and requires constant preparation.</p>
                 </div>
-                <div class="card">
-                    <span class="card-icon">🌿</span>
-                    <h3>Organic Ingredients</h3>
-                    <p>Sourced from sustainable farms to ensure a clean, wholesome treat you can feel good about.</p>
+
+                <div class="problem-card">
+                    <h3>⚡ Equipment Strain</h3>
+                    <p>Standard home blenders often overheat when processing frozen fruit without heavy liquid additives, destroying the thick, soft-serve consistency.</p>
+                </div>
+
+                <div class="problem-card">
+                    <h3>🏬 No Commercial Alternatives</h3>
+                    <p>Store-bought non-dairy tubs rely heavily on coconut oils, gums, and artificial thickeners rather than pure, whipped fruit soft serve.</p>
                 </div>
             </div>
+
+            <div style="text-align: center; margin-top: 4rem;">
+                <button class="btn btn-primary" onclick="switchTab('order')">Discover How We Solve It in "Buy Nice"</button>
+            </div>
+
         </section>
 
-        <!-- ORDER/SHOP TAB CONTENT -->
+        <!-- BUY NICE / SHOP TAB CONTENT -->
         <section id="order" class="tab-content" role="tabpanel" aria-labelledby="nav-order">
             <div class="hero">
-                <h1>Signature Flavors</h1>
-                <p>Artisanal soft-serve scoops and multi-packs delivered right to your door.</p>
+                <h1>Buy Nice</h1>
+                <p>Artisanal nice cream blends delivered directly to your freezer.</p>
             </div>
 
             <div class="grid">
@@ -665,10 +757,8 @@
     </footer>
 
     <script>
-        // State Management
         let cart = [];
 
-        // Tab Navigation
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -685,24 +775,19 @@
                 activeNav.setAttribute('aria-selected', 'true');
             }
 
-            // Close mobile menu if open
             document.getElementById('main-nav').classList.remove('open');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Mobile Menu Toggle
         function toggleMobileMenu() {
-            const nav = document.getElementById('main-nav');
-            nav.classList.toggle('open');
+            document.getElementById('main-nav').classList.toggle('open');
         }
 
-        // Cart Drawer Controls
         function toggleCartDrawer() {
             document.getElementById('cart-drawer').classList.toggle('active');
             document.getElementById('cart-overlay').classList.toggle('active');
         }
 
-        // Cart Logic
         function addToCart(title, price) {
             const existingItem = cart.find(item => item.title === title);
             if (existingItem) {
@@ -748,13 +833,12 @@
 
         function checkout() {
             if (cart.length === 0) return;
-            showModal('Order Received!', 'Thank you for your order. We are preparing your fresh dairy-free scoop batch!');
+            showModal('Order Received!', 'Thank you for your order. We are preparing your fresh batch!');
             cart = [];
             updateCartUI();
             toggleCartDrawer();
         }
 
-        // Modal Helpers
         function showModal(title, message) {
             document.getElementById('modal-title').textContent = title;
             document.getElementById('modal-message').textContent = message;
