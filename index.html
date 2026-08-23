@@ -181,10 +181,13 @@
             height: 240px;
             border-radius: 16px;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3.5rem;
+            overflow: hidden;
+        }
+        .product-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
         .product-details h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
         .product-details p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
@@ -248,6 +251,18 @@
         @keyframes modalPop { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         .modal h2 { font-size: 2rem; font-weight: 800; color: #FF4757; margin-bottom: 1rem; letter-spacing: -0.5px; }
         .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; font-size: 1.75rem; cursor: pointer; border: none; background: none; color: var(--text-muted); }
+        .modal-email-row {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        .modal-email-row input {
+            flex: 1;
+        }
+        .modal-email-row .btn {
+            padding: 0.9rem 1.5rem;
+            white-space: nowrap;
+        }
         
         /* FOOTER BRANDING */
         footer {
@@ -266,6 +281,7 @@
             nav { display: none; } /* Kept clean for single-page utility on mobile */
             .header-container { justify-content: center; }
             .form-wrapper { padding: 1.5rem; }
+            .modal-email-row { flex-direction: column; }
         }
     </style>
 </head>
@@ -278,7 +294,7 @@
             <nav>
                 <a onclick="switchTab('home')" id="nav-home" class="active">Home Base</a>
                 <a onclick="switchTab('order')" id="nav-order">Shop Bundles</a>
-                <a onclick="switchTab('contact')" id="nav-contact">Flavor Waitlist</a>
+                <a onclick="switchTab('merch')" id="nav-merch">Merch</a>
             </nav>
         </div>
     </header>
@@ -322,81 +338,98 @@
 
             <div class="grid">
                 <div class="product-card">
-                    <div class="product-image-placeholder">🍓</div>
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&auto=format&fit=crop&q=80" alt="Strawberry soft serve ice cream cone" loading="lazy"></div>
                     <div class="product-details">
                         <h3>Strawberry Dream</h3>
                         <p>Fresh strawberry with a hint of vanilla. A classic favorite that never disappoints.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$6.99</span>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image-placeholder">🍌</div>
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1625667893125-ca3b9492946c?w=800&auto=format&fit=crop&q=80" alt="Tropical mango soft serve ice cream" loading="lazy"></div>
                     <div class="product-details">
                         <h3>Tropical Mango</h3>
                         <p>Silky mango soft serve with a smooth coconut base. Pure tropical paradise.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$6.99</span>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image-placeholder">🍫</div>
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1674595605055-fa617cb4f8d7?w=800&auto=format&fit=crop&q=80" alt="Scoop of dark chocolate ice cream" loading="lazy"></div>
                     <div class="product-details">
                         <h3>Dark Chocolate</h3>
                         <p>Rich, decadent dark chocolate crafted from premium cocoa. For chocolate lovers.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$7.49</span>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <div class="product-image-placeholder">🍵</div>
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1779829278703-1967d99a7a38?w=800&auto=format&fit=crop&q=80" alt="Green matcha soft serve ice cream cone" loading="lazy"></div>
                     <div class="product-details">
                         <h3>Matcha Latte</h3>
                         <p>Creamy matcha soft serve with a subtle earthy flavor. A modern classic.</p>
                     </div>
                     <div class="price-row">
                         <span class="price">$7.99</span>
-                        <button class="btn btn-primary">Add to Cart</button>
+                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CONTACT/WAITLIST TAB CONTENT -->
-        <section id="contact" class="tab-content">
+        <!-- MERCH TAB CONTENT -->
+        <section id="merch" class="tab-content">
             <div class="hero">
-                <h1>Join the Flavor Waitlist</h1>
-                <p>Be the first to know about our new seasonal flavors and exclusive releases</p>
+                <h1>CKC Merch</h1>
+                <p>Rep the cone. Official Cottage Kitchen Creamery gear, coming soon.</p>
             </div>
 
-            <div class="form-wrapper">
-                <form id="waitlist-form">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your name" required>
+            <div class="grid">
+                <div class="product-card">
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1620799139507-2a76f79a2f4d?w=800&auto=format&fit=crop&q=80" alt="Blank white t-shirt mockup" loading="lazy"></div>
+                    <div class="product-details">
+                        <h3>CKC Logo Tee</h3>
+                        <p>Soft, breathable cotton tee featuring our signature ice cream cone logo on the chest.</p>
                     </div>
-
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                    <div class="price-row">
+                        <span class="price">$24.99</span>
+                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="message">Favorite Flavor Ideas</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Tell us what flavors you'd love to see..." style="resize: vertical;"></textarea>
+                <div class="product-card">
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1691256676359-20e5c6d4bc92?w=800&auto=format&fit=crop&q=80" alt="Blank white baseball cap mockup" loading="lazy"></div>
+                    <div class="product-details">
+                        <h3>CKC Cone Hat</h3>
+                        <p>Adjustable dad hat embroidered with the CKC ice cream cone logo. One size fits most.</p>
                     </div>
+                    <div class="price-row">
+                        <span class="price">$19.99</span>
+                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                    </div>
+                </div>
 
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Join the Waitlist</button>
-                </form>
+                <div class="product-card">
+                    <div class="product-image-placeholder"><img src="https://images.unsplash.com/photo-1532537455099-5025af0bac65?w=800&auto=format&fit=crop&q=80" alt="Stainless steel ice cream scoop" loading="lazy"></div>
+                    <div class="product-details">
+                        <h3>CKC Scoop</h3>
+                        <p>Sturdy stainless steel ice cream scoop stamped with the CKC cone logo. Kitchen essential.</p>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">$14.99</span>
+                        <button class="btn btn-primary" onclick="showStockModal()">Add to Cart</button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -408,7 +441,11 @@
             <button class="modal-close" onclick="closeModal()">✕</button>
             <h2 id="modal-title">Success!</h2>
             <p id="modal-message">Thank you for signing up. We'll be in touch soon!</p>
-            <button class="btn btn-primary" onclick="closeModal()" style="margin-top: 1.5rem;">Got It</button>
+            <div class="modal-email-row" id="modal-email-row" style="display: none;">
+                <input type="email" id="modal-email-input" placeholder="your@email.com">
+                <button class="btn btn-primary" onclick="submitStockWaitlist()">Sign Up</button>
+            </div>
+            <button class="btn btn-primary" id="modal-ok-btn" onclick="closeModal()" style="margin-top: 1.5rem;">Got It</button>
         </div>
     </div>
 
@@ -446,6 +483,8 @@
         function showModal(title, message) {
             document.getElementById('modal-title').textContent = title;
             document.getElementById('modal-message').textContent = message;
+            document.getElementById('modal-email-row').style.display = 'none';
+            document.getElementById('modal-ok-btn').style.display = 'inline-flex';
             document.getElementById('modal-overlay').style.display = 'flex';
         }
 
@@ -453,13 +492,25 @@
             document.getElementById('modal-overlay').style.display = 'none';
         }
 
-        // Form Submission
-        document.getElementById('waitlist-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            showModal('Welcome!', `Thanks for joining ${name}! You're on the waitlist for our latest flavors.`);
-            this.reset();
-        });
+        // Out-of-stock / waitlist upsell modal (shown on Add to Cart)
+        function showStockModal() {
+            document.getElementById('modal-title').textContent = 'Out of Stock';
+            document.getElementById('modal-message').textContent = "Sorry, our limited release stock is currently unavailable. Sign up for our waitlist and get $5 off your next order!";
+            document.getElementById('modal-email-row').style.display = 'flex';
+            document.getElementById('modal-ok-btn').style.display = 'none';
+            document.getElementById('modal-email-input').value = '';
+            document.getElementById('modal-overlay').style.display = 'flex';
+        }
+
+        function submitStockWaitlist() {
+            const email = document.getElementById('modal-email-input').value;
+            if (!email) {
+                document.getElementById('modal-email-input').focus();
+                return;
+            }
+            // TODO: wire up real email capture / dropshipping integration later
+            showModal('You\'re On the List!', `Thanks! We'll email ${email} as soon as this item — and your $5 off — is ready.`);
+        }
 
         // Close modal when clicking outside
         document.getElementById('modal-overlay').addEventListener('click', function(e) {
