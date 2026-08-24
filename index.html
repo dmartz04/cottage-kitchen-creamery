@@ -180,11 +180,22 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
 
         /* HOME / NICE CREAM PAGE STYLES */
+        .hero-nice-cream-wrapper {
+            position: relative;
+            background: linear-gradient(rgba(35, 38, 47, 0.65), rgba(35, 38, 47, 0.75)), 
+                        url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
+            border-radius: 32px;
+            overflow: hidden;
+            margin-bottom: 4rem;
+            box-shadow: var(--shadow-lg);
+        }
+
         .hero-nice-cream {
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 5rem 2rem;
             max-width: 900px;
             margin: 0 auto;
+            color: var(--white);
         }
 
         .hero-nice-cream h1 {
@@ -192,14 +203,17 @@
             font-weight: 800;
             letter-spacing: -1px;
             margin-bottom: 1rem;
+            color: var(--white);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .hero-nice-cream p.one-liner {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 500;
-            color: var(--text-muted);
+            color: #F1F5F9;
             margin-bottom: 3rem;
             line-height: 1.6;
+            text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
         }
 
         /* Comic Strip Grid */
@@ -373,7 +387,6 @@
         }
 
         .problem-card p {
-            <div class="problem-card">
             color: var(--text-muted);
             font-size: 0.9rem;
             line-height: 1.55;
@@ -595,37 +608,39 @@
         <!-- NICE CREAM HOME TAB CONTENT -->
         <section id="home" class="tab-content active" role="tabpanel" aria-labelledby="nav-home">
             
-            <div class="hero-nice-cream">
-                <h1>Cottage Kitchen Creamery</h1>
-                <p class="one-liner"> Our small-batch passion, organic ingredients, and full-flavor signature drypack nice cream blends eliminate the everyday kitchen hassle of spoiled produce, unpeeled fruit, or missing ingredients when a dessert craving hits.</p>
+            <div class="hero-nice-cream-wrapper">
+                <div class="hero-nice-cream">
+                    <h1>Meet Cottage Kitchen Creamery</h1>
+                    <p class="one-liner">Welcome to our local cottage food operation, where small-batch passion meets wholesome ingredients. We craft signature drypack nice cream blends designed to eliminate the everyday kitchen hassle of spoiled produce, unpeeled fruit, or missing components when a dessert craving hits.</p>
+                </div>
+            </div>
 
-                <div class="comic-strip">
-                    <div class="comic-panel">
-                        <span class="comic-step-number">Step 1</span>
-                        <div class="comic-illustration">
-                            <img src="https://cookinglife.fr/cdn/shop/files/Foodies_Bananenijs_met_aardbei.png?v=1733913740&width=1260" alt="Bright fresh strawberries and banana pieces beside pink nice cream" loading="lazy">
-                        </div>
-                        <div class="comic-caption">Start With Real Fruit</div>
-                        <p class="comic-description">Bright strawberries and ripe banana are the foundation for a naturally colorful, fruit-forward treat.</p>
+            <div class="comic-strip">
+                <div class="comic-panel">
+                    <span class="comic-step-number">Step 1</span>
+                    <div class="comic-illustration">
+                        <img src="https://cookinglife.fr/cdn/shop/files/Foodies_Bananenijs_met_aardbei.png?v=1733913740&width=1260" alt="Bright fresh strawberries and banana pieces beside pink nice cream" loading="lazy">
                     </div>
+                    <div class="comic-caption">Start With Real Fruit</div>
+                    <p class="comic-description">Bright strawberries and ripe banana are the foundation for a naturally colorful, fruit-forward treat.</p>
+                </div>
 
-                    <div class="comic-panel">
-                        <span class="comic-step-number">Step 2</span>
-                        <div class="comic-illustration">
-                            <img src="https://snapcalorie-webflow-website.s3.us-east-2.amazonaws.com/media/food_pics_v2/medium/frozen_strawberries_and_bananas.jpg" alt="Real strawberries and banana slices covered in frost and ready to blend" loading="lazy">
-                        </div>
-                        <div class="comic-caption">Freeze It Cold</div>
-                        <p class="comic-description">Frozen strawberries and banana pieces bring the chill and structure needed for a thick, creamy blend.</p>
+                <div class="comic-panel">
+                    <span class="comic-step-number">Step 2</span>
+                    <div class="comic-illustration">
+                        <img src="https://snapcalorie-webflow-website.s3.us-east-2.amazonaws.com/media/food_pics_v2/medium/frozen_strawberries_and_bananas.jpg" alt="Real strawberries and banana slices covered in frost and ready to blend" loading="lazy">
                     </div>
+                    <div class="comic-caption">Freeze It Cold</div>
+                    <p class="comic-description">Frozen strawberries and banana pieces bring the chill and structure needed for a thick, creamy blend.</p>
+                </div>
 
-                    <div class="comic-panel">
-                        <span class="comic-step-number">Step 3</span>
-                        <div class="comic-illustration">
-                            <img src="https://www.typesrecipes.com/wp-content/uploads/2025/04/neapolitan-ice-cream.webp" alt="Bright Neapolitan ice cream with strawberry, vanilla and chocolate scoops" loading="lazy">
-                        </div>
-                        <div class="comic-caption">Bright Neapolitan Nice Cream</div>
-                        <p class="comic-description">Blend the fruit into a silky soft-serve texture, then bring the classic strawberry, vanilla and chocolate colors together.</p>
+                <div class="comic-panel">
+                    <span class="comic-step-number">Step 3</span>
+                    <div class="comic-illustration">
+                        <img src="https://www.typesrecipes.com/wp-content/uploads/2025/04/neapolitan-ice-cream.webp" alt="Bright Neapolitan ice cream with strawberry, vanilla and chocolate scoops" loading="lazy">
                     </div>
+                    <div class="comic-caption">Bright Neapolitan Nice Cream</div>
+                    <p class="comic-description">Blend the fruit into a silky soft-serve texture, then bring the classic strawberry, vanilla and chocolate colors together.</p>
                 </div>
             </div>
 
