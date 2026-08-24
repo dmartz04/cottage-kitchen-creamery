@@ -411,7 +411,7 @@
             display: block;
         }
 
-        .product-details h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .product-details h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
         .product-details p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
         
         .price-row {
@@ -423,11 +423,23 @@
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
         
-        .price { font-size: 1.5rem; font-weight: 800; color: var(--dark); }
+        .price { font-size: 1.35rem; font-weight: 800; color: var(--dark); }
 
-        .hero { text-align: center; padding: 2rem 0 3rem; }
+        .hero { text-align: center; padding: 2rem 0 1.5rem; }
         .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
         .hero p { color: var(--text-muted); font-size: 1.1rem; }
+
+        .bundle-banner {
+            background: var(--accent);
+            color: var(--dark);
+            text-align: center;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-sm);
+        }
 
         /* Cart Drawer */
         .cart-drawer-overlay {
@@ -681,60 +693,68 @@
                 <p>Artisanal nice cream blends delivered directly to your freezer.</p>
             </div>
 
+            <div class="bundle-banner">
+                🎉 Special Offer: Mix and match any 3 pints for just $25! (Discount applied at checkout)
+            </div>
+
             <div class="grid">
+                <!-- 1. Childhood Chocolate Cherry Chunk -->
                 <div class="product-card">
                     <div class="product-image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1674595605055-fa617cb4f8d7?w=800&auto=format&fit=crop&q=80" alt="Dark chocolate soft serve scoop" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1543255006-d639526f1a8d?w=800&auto=format&fit=crop&q=80" alt="Bowl of chocolate ice cream overflowing with syrup and cherries" loading="lazy">
                     </div>
                     <div class="product-details">
-                        <h3>Dark Cocoa Fudge</h3>
-                        <p>Decadent cacao blend delivering a deep, velvety dark chocolate experience.</p>
+                        <h3>Childhood Chocolate Cherry Chunk</h3>
+                        <p>Decadent cacao blend dripping with rich syrup and packed with juicy cherry chunks.</p>
                     </div>
                     <div class="price-row">
-                        <span class="price">$7.49</span>
-                        <button class="btn btn-primary btn-sm" onclick="addToCart('Dark Cocoa Fudge', 7.49)">Add to Cart</button>
+                        <span class="price">$9.99 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(or 3 for $25)</span></span>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Childhood Chocolate Cherry Chunk', 9.99)">Add to Cart</button>
                     </div>
                 </div>
 
+                <!-- 2. Vanilla Nice Nice Baby -->
                 <div class="product-card">
                     <div class="product-image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1557142046-c704a3adf364?w=800&auto=format&fit=crop&q=80" alt="Madagascar vanilla bean soft serve" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1570197788417-0e82375c9371?w=800&auto=format&fit=crop&q=80" alt="Madagascar vanilla bean ice cream bowl" loading="lazy">
                     </div>
                     <div class="product-details">
-                        <h3>Madagascar Vanilla</h3>
-                        <p>Infused with real vanilla bean pods for a classic, smooth, and aromatic finish.</p>
+                        <h3>Vanilla Nice Nice Baby</h3>
+                        <p>Infused with real Madagascar vanilla bean specks for a classic, smooth, and aromatic finish.</p>
                     </div>
                     <div class="price-row">
-                        <span class="price">$6.99</span>
-                        <button class="btn btn-primary btn-sm" onclick="addToCart('Madagascar Vanilla', 6.99)">Add to Cart</button>
+                        <span class="price">$9.99 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(or 3 for $25)</span></span>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Vanilla Nice Nice Baby', 9.99)">Add to Cart</button>
                     </div>
                 </div>
 
+                <!-- 3. Strawberry Cream Forever -->
                 <div class="product-card">
                     <div class="product-image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?w=800&auto=format&fit=crop&q=80" alt="Strawberry dream soft serve" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=800&auto=format&fit=crop&q=80" alt="Stylized retro strawberry covered in ice" loading="lazy">
                     </div>
                     <div class="product-details">
-                        <h3>Strawberry Dream</h3>
-                        <p>Real organic strawberries blended with subtle vanilla cream notes.</p>
+                        <h3>Strawberry Cream Forever</h3>
+                        <p>Real organic strawberries blended into a frosted, retro-inspired fruit dream.</p>
                     </div>
                     <div class="price-row">
-                        <span class="price">$6.99</span>
-                        <button class="btn btn-primary btn-sm" onclick="addToCart('Strawberry Dream', 6.99)">Add to Cart</button>
+                        <span class="price">$9.99 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(or 3 for $25)</span></span>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Strawberry Cream Forever', 9.99)">Add to Cart</button>
                     </div>
                 </div>
 
+                <!-- 4. Not Nonnas Neapolitan -->
                 <div class="product-card">
                     <div class="product-image-placeholder">
-                        <img src="https://images.unsplash.com/photo-1567206563064-6f60f40a2b57?w=800&auto=format&fit=crop&q=80" alt="Neapolitan multi-pack tubs" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1516559828914-7fe09b23eced?w=800&auto=format&fit=crop&q=80" alt="Ice cream cart with a neapolitan ice cream tub on it" loading="lazy">
                     </div>
                     <div class="product-details">
-                        <h3>Neapolitan Multi-Pack</h3>
-                        <p>Includes one pint of each core flavor: Dark Cocoa, Vanilla Bean, and Strawberry Dream.</p>
+                        <h3>Not Nonnas Neapolitan</h3>
+                        <p>A playful multi-pack tub featuring side-by-side layers of chocolate, vanilla, and strawberry.</p>
                     </div>
                     <div class="price-row">
-                        <span class="price">$18.99</span>
-                        <button class="btn btn-primary btn-sm" onclick="addToCart('Neapolitan Multi-Pack', 18.99)">Add to Cart</button>
+                        <span class="price">$9.99 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(or 3 for $25)</span></span>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Not Nonnas Neapolitan', 9.99)">Add to Cart</button>
                     </div>
                 </div>
             </div>
