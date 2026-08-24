@@ -85,6 +85,8 @@
         .hero { text-align: center; padding: 2rem 0 1.5rem; }
         .hero h1 { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
         .hero p { color: var(--text-muted); font-size: 1.1rem; }
+        .video-wrapper { max-width: 800px; margin: 0 auto; background: var(--dark); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-lg); }
+        .video-wrapper video { display: block; width: 100%; height: auto; max-height: 70vh; }
         .bundle-banner { background: var(--accent); color: var(--dark); text-align: center; padding: 0.75rem 1rem; border-radius: 12px; font-weight: 700; font-size: 0.95rem; margin-bottom: 2.5rem; box-shadow: var(--shadow-sm); }
         .cart-drawer-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(35, 38, 47, 0.5); backdrop-filter: blur(4px); z-index: 1000; }
         .cart-drawer-overlay.active { display: block; }
@@ -138,6 +140,7 @@
                 <button onclick="switchTab('order')" id="nav-order" class="nav-link" role="tab" aria-selected="false" aria-controls="order">Buy Nice</button>
                 <button onclick="switchTab('subscriber')" id="nav-subscriber" class="nav-link" role="tab" aria-selected="false" aria-controls="subscriber">I'm a Subscriber</button>
                 <button onclick="switchTab('merch')" id="nav-merch" class="nav-link" role="tab" aria-selected="false" aria-controls="merch">Merch</button>
+                <button onclick="switchTab('howto')" id="nav-howto" class="nav-link" role="tab" aria-selected="false" aria-controls="howto">How To</button>
                 <button class="cart-trigger" onclick="toggleCartDrawer()" aria-label="View Shopping Cart">
                     🛒 Cart <span class="cart-badge" id="cart-count">0</span>
                 </button>
@@ -166,7 +169,7 @@
                 </div>
                 <div class="evolution-card reversed">
                     <div class="evolution-image">
-                        <img src="hero-butcherblock-neon.png" alt="counter blender fresh fruit drypack" loading="lazy">
+                        <img src="hero-butcherblock.png" alt="counter blender fresh fruit drypack" loading="lazy">
                     </div>
                     <div class="evolution-text">
                         <span class="badge-pill">Cottage Kitchen's Nice Cream Drypack</span>
@@ -254,7 +257,7 @@
                 <span class="badge-pill">Direct to Blender Savings</span>
                 <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem; color: var(--dark); letter-spacing: -0.5px;">Monthly Nice Cream Delivery</h2>
                 <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;">Our hardest working subscribers deserve a little discount. Scheduled delivery of your flavor of choice for only: <br> <strong style="color: var(--dark);">$25 per month</strong>.</p>
-                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; width: 100%;" onclick="addToCart('Monthly Nice Cream Subscription (3-Pint Bundle)')">I'm a subscriber</button>
+                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; width: 100%;" onclick="addToCart('Monthly Nice Cream Subscription (3-Pint Bundle)', 25.00); toggleCartDrawer();">I'm a subscriber</button>
             </div>
         </section>
 
@@ -305,6 +308,19 @@
                 </div>
             </div>
         </section>
+
+        <section id="howto" class="tab-content" role="tabpanel" aria-labelledby="nav-howto">
+            <div class="hero">
+                <h1>How To</h1>
+                <p>Watch how easy it is to make your own nice cream at home.</p>
+            </div>
+            <div class="video-wrapper">
+                <video controls preload="metadata" playsinline>
+                    <source src="how-to-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </section>
     </main>
 
     <div class="cart-drawer-overlay" id="cart-overlay" onclick="toggleCartDrawer()"></div>
@@ -334,19 +350,6 @@
                 <input type="email" id="modal-email" placeholder="Enter your email...">
                 <button class="btn btn-primary btn-sm" onclick="submitModalEmail()">Notify</button>
             </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="checkout-stock-modal" onclick="if(event.target === this) hideCheckoutStockModal()">
-        <div class="modal">
-            <button class="modal-close" onclick="hideCheckoutStockModal()">&times;</button>
-            <h2>Sorry, we're out of stock!</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">This item just sold out. Sign up below and we'll email you a <strong style="color: var(--dark);">$5 off</strong> code the moment it's back.</p>
-            <div class="modal-email-row">
-                <input type="email" id="checkout-modal-email" placeholder="Enter your email...">
-                <button class="btn btn-primary btn-sm" id="checkout-modal-submit-btn" onclick="submitCheckoutModalEmail()">Notify Me</button>
-            </div>
-            <p id="checkout-modal-status" style="font-size: 0.85rem; margin-top: 0.75rem; min-height: 1.2em;"></p>
         </div>
     </div>
 
@@ -382,7 +385,14 @@
             document.getElementById('cart-overlay').classList.toggle('active');
         }
         function addToCart(name, price) {
-            showCheckoutStockModal(name);
+            const existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCartUI();
+            toggleCartDrawer();
         }
         function updateCartUI() {
             const container = document.getElementById('cart-items-container');
@@ -429,67 +439,6 @@
                 hideStockModal();
             } else {
                 alert('Please enter a valid email address.');
-            }
-        }
-
-        // Checkout "out of stock" interest capture — submits to Formspree
-        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjybqyya';
-
-        let attemptedProduct = null;
-        function showCheckoutStockModal(productName) {
-            attemptedProduct = productName || null;
-            document.getElementById('checkout-modal-status').textContent = '';
-            document.getElementById('checkout-modal-status').style.color = '';
-            document.getElementById('checkout-stock-modal').classList.add('active');
-        }
-        function hideCheckoutStockModal() {
-            document.getElementById('checkout-stock-modal').classList.remove('active');
-        }
-
-        async function submitCheckoutModalEmail() {
-            const emailInput = document.getElementById('checkout-modal-email');
-            const statusEl = document.getElementById('checkout-modal-status');
-            const submitBtn = document.getElementById('checkout-modal-submit-btn');
-            const email = emailInput.value.trim();
-
-            if (!email || !email.includes('@')) {
-                statusEl.style.color = 'var(--primary)';
-                statusEl.textContent = 'Please enter a valid email address.';
-                return;
-            }
-
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Sending...';
-            statusEl.style.color = 'var(--text-muted)';
-            statusEl.textContent = '';
-
-            try {
-                const response = await fetch(FORMSPREE_ENDPOINT, {
-                    method: 'POST',
-                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: email,
-                        source: 'add-to-cart-out-of-stock',
-                        product_attempted: attemptedProduct || 'unknown',
-                        page: window.location.href,
-                        timestamp: new Date().toISOString()
-                    })
-                });
-
-                if (response.ok) {
-                    statusEl.style.color = '#16A34A';
-                    statusEl.textContent = "You're on the list! Watch your inbox for your $5 off code.";
-                    emailInput.value = '';
-                    setTimeout(hideCheckoutStockModal, 2200);
-                } else {
-                    throw new Error('Submission failed');
-                }
-            } catch (err) {
-                statusEl.style.color = 'var(--primary)';
-                statusEl.textContent = 'Something went wrong. Please try again in a moment.';
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Notify Me';
             }
         }
     </script>
