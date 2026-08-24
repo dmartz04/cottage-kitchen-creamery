@@ -186,7 +186,7 @@
                         url('https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
             border-radius: 32px;
             overflow: hidden;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
             box-shadow: var(--shadow-lg);
         }
 
@@ -211,150 +211,57 @@
             font-size: 1.2rem;
             font-weight: 500;
             color: #F1F5F9;
-            margin-bottom: 3rem;
             line-height: 1.6;
             text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
         }
 
-        /* Comic Strip Grid */
-        .comic-strip {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+        /* Evolution / Transition Section */
+        .evolution-container {
             margin-top: 2rem;
-            position: relative;
         }
 
-        .comic-panel {
+        .evolution-card {
             background: var(--white);
             border: 1px solid var(--border-light);
-            border-radius: 24px;
-            padding: 0.75rem 0.75rem 1.25rem;
-            text-align: left;
+            border-radius: 28px;
+            padding: 2.5rem;
             box-shadow: var(--shadow-md);
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin-bottom: 2rem;
         }
 
-        .comic-panel:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
+        .evolution-card.reversed {
+            grid-template-columns: 1fr 1fr;
         }
 
-        .comic-step-number {
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            background: var(--primary);
-            color: var(--white);
-            font-weight: 800;
-            font-size: 0.85rem;
-            padding: 0.2rem 0.8rem;
-            border-radius: 12px;
-            border: 2px solid var(--dark);
-            text-transform: uppercase;
-        }
-
-        .comic-illustration {
-            width: 100%;
-            height: 205px;
-            margin: 0;
-            border-radius: 18px;
-            overflow: hidden;
-            background: var(--bg-cream);
-        }
-
-        .comic-illustration img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.35s ease;
-        }
-
-        .comic-panel:hover .comic-illustration img {
-            transform: scale(1.035);
-        }
-
-        .comic-caption {
-            font-weight: 800;
-            font-size: 1.05rem;
-            color: var(--dark);
-            padding: 1rem 0.5rem 0.15rem;
-        }
-
-        .comic-description {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            line-height: 1.5;
-            padding: 0 0.5rem;
-        }
-
-        /* Section Separator */
-        .section-divider {
-            margin: 5rem 0 3rem;
-            text-align: center;
-        }
-
-        .section-divider h2 {
-            font-size: 2.25rem;
+        .evolution-text h3 {
+            font-size: 1.8rem;
             font-weight: 800;
             letter-spacing: -0.5px;
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
         }
 
-        .section-divider p {
+        .evolution-text p {
             color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
         }
 
-        .dilemma-heading {
-            margin-bottom: 2.5rem;
-        }
-
-        .section-eyebrow {
-            display: inline-block;
-            color: var(--primary);
-            font-size: 0.72rem;
-            font-weight: 800;
-            letter-spacing: 1.6px;
-            margin-bottom: 0.65rem;
-        }
-
-        /* Problems Grid */
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .problem-card {
-            background: var(--white);
+        .evolution-image {
+            width: 100%;
+            height: 280px;
             border-radius: 20px;
-            padding: 0;
-            overflow: hidden;
-            border: 1px solid rgba(35, 38, 47, 0.08);
-            box-shadow: 0 12px 30px rgba(35, 38, 47, 0.07);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 18px 38px rgba(35, 38, 47, 0.11);
-        }
-
-        .problem-image {
-            height: 190px;
             overflow: hidden;
             background: var(--bg-cream);
+            box-shadow: var(--shadow-sm);
         }
 
-        .problem-image img {
+        .evolution-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -362,34 +269,21 @@
             transition: transform 0.35s ease;
         }
 
-        .problem-card:hover .problem-image img {
-            transform: scale(1.035);
+        .evolution-card:hover .evolution-image img {
+            transform: scale(1.03);
         }
 
-        .problem-content {
-            padding: 1.35rem 1.4rem 1.5rem;
-        }
-
-        .problem-kicker {
-            display: block;
+        .badge-pill {
+            display: inline-block;
+            background: rgba(255, 90, 112, 0.1);
             color: var(--primary);
-            font-size: 0.7rem;
             font-weight: 800;
+            font-size: 0.75rem;
             letter-spacing: 1.2px;
-            margin-bottom: 0.45rem;
-        }
-
-        .problem-card h3 {
-            font-size: 1.12rem;
-            line-height: 1.3;
-            margin-bottom: 0.55rem;
-            color: var(--dark);
-        }
-
-        .problem-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            line-height: 1.55;
+            text-transform: uppercase;
+            padding: 0.35rem 0.9rem;
+            border-radius: 50px;
+            margin-bottom: 0.75rem;
         }
 
         /* Product & Merch Cards */
@@ -564,7 +458,7 @@
 
         @media (max-width: 768px) {
             .hero-nice-cream h1 { font-size: 2.2rem; }
-            .comic-strip { grid-template-columns: 1fr; }
+            .evolution-card, .evolution-card.reversed { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.5rem; }
             .mobile-menu-btn { display: block; }
             
             nav {
@@ -615,85 +509,28 @@
                 </div>
             </div>
 
-            <div class="comic-strip">
-                <div class="comic-panel">
-                    <span class="comic-step-number">Step 1</span>
-                    <div class="comic-illustration">
-                        <img src="https://cookinglife.fr/cdn/shop/files/Foodies_Bananenijs_met_aardbei.png?v=1733913740&width=1260" alt="Bright fresh strawberries and banana pieces beside pink nice cream" loading="lazy">
+            <div class="evolution-container">
+                <div class="evolution-card">
+                    <div class="evolution-text">
+                        <span class="badge-pill">The Old Routine</span>
+                        <h3>Say goodbye to the produce race & freezer clutter</h3>
+                        <p>We've all been there: buying mountains of fruit with big intentions, only to watch half of it overripen on the counter. Then comes the weekend chore of peeling, chopping, bagging, and playing Tetris with your crowded freezer—just to realize you're missing a key ingredient right when your sweet tooth strikes.</p>
                     </div>
-                    <div class="comic-caption">Start With Real Fruit</div>
-                    <p class="comic-description">Bright strawberries and ripe banana are the foundation for a naturally colorful, fruit-forward treat.</p>
+                    <div class="evolution-image">
+                        <img src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=800&auto=format&fit=crop&q=80" alt="Country kitchen countertop overflowing with fresh fruit and a blender" loading="lazy">
+                    </div>
                 </div>
 
-                <div class="comic-panel">
-                    <span class="comic-step-number">Step 2</span>
-                    <div class="comic-illustration">
-                        <img src="https://snapcalorie-webflow-website.s3.us-east-2.amazonaws.com/media/food_pics_v2/medium/frozen_strawberries_and_bananas.jpg" alt="Real strawberries and banana slices covered in frost and ready to blend" loading="lazy">
+                <div class="evolution-card reversed">
+                    <div class="evolution-image">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&auto=format&fit=crop&q=80" alt="Pantry shelf stocked with foil drypack pouches and a sleek blender ready to go" loading="lazy">
                     </div>
-                    <div class="comic-caption">Freeze It Cold</div>
-                    <p class="comic-description">Frozen strawberries and banana pieces bring the chill and structure needed for a thick, creamy blend.</p>
+                    <div class="evolution-text">
+                        <span class="badge-pill">The Drypack Upgrade</span>
+                        <h3>Snap open, blend up, zero waste</h3>
+                        <p>Enter the ultimate kitchen flex. With Cottage Kitchen Creamery's shelf-stable drypacks, the struggle is officially over. No spoilage anxiety, no messy prep work, and zero guesswork. Whenever the mood hits, just rip open a pouch, toss it in the blender with your base, and whip up restaurant-quality, dairy-free soft serve in seconds.</p>
+                    </div>
                 </div>
-
-                <div class="comic-panel">
-                    <span class="comic-step-number">Step 3</span>
-                    <div class="comic-illustration">
-                        <img src="https://www.typesrecipes.com/wp-content/uploads/2025/04/neapolitan-ice-cream.webp" alt="Bright Neapolitan ice cream with strawberry, vanilla and chocolate scoops" loading="lazy">
-                    </div>
-                    <div class="comic-caption">Bright Neapolitan Nice Cream</div>
-                    <p class="comic-description">Blend the fruit into a silky soft-serve texture, then bring the classic strawberry, vanilla and chocolate colors together.</p>
-                </div>
-            </div>
-
-            <div class="section-divider dilemma-heading">
-                <span class="section-eyebrow">THE EVERYDAY CHALLENGE</span>
-                <h2>The Homemade Dilemma</h2>
-                <p>Making fruit-based nice cream sounds effortless. In practice, getting consistently ripe fruit, keeping enough frozen fruit on hand, and finding a truly fruit-forward alternative can make the routine surprisingly demanding.</p>
-            </div>
-
-            <div class="problem-grid">
-                <article class="problem-card">
-                    <div class="problem-image">
-                        <img src="https://tn.com.ar/cdn-cgi/imagedelivery/4qE6gY0b8qj4J0a5G1b7bA/AYPXFNN6DZEJNFLDCJOLOLTSVQ/fit=cover,width=900,height=600,quality=85" alt="Overripe bananas with dark brown spots on a kitchen counter" loading="lazy">
-                    </div>
-                    <div class="problem-content">
-                        <span class="problem-kicker">01 · RIPENESS</span>
-                        <h3>Perfect Ripeness Is a Moving Target</h3>
-                        <p>Fruit can move quickly from perfectly ripe to heavily spotted and soft. That makes it harder to keep the same flavor, color, and texture from one batch to the next.</p>
-                    </div>
-                </article>
-
-                <article class="problem-card">
-                    <div class="problem-image">
-                        <img src="https://s359.kapook.com/pagebuilder/ee63d472-4abe-4b32-963b-ff766864fb37.jpg" alt="Home freezer packed with bags and containers of frozen fruit" loading="lazy">
-                    </div>
-                    <div class="problem-content">
-                        <span class="problem-kicker">02 · PREP & STORAGE</span>
-                        <h3>Keeping Frozen Fruit Ready Takes Space</h3>
-                        <p>Peeling, portioning, freezing, and storing enough fruit for regular nice cream means planning ahead—and dedicating valuable freezer space to the process.</p>
-                    </div>
-                </article>
-
-                <article class="problem-card">
-                    <div class="problem-image">
-                        <img src="https://cloudfront-us-east-1.images.arcpublishing.com/artear/AYPXFNN6DZEJNFLDCJOLOLTSVQ.png" alt="Frozen fruit prepared and stored in freezer bags" loading="lazy">
-                    </div>
-                    <div class="problem-content">
-                        <span class="problem-kicker">03 · CONSISTENCY</span>
-                        <h3>Every Batch Can Be Different</h3>
-                        <p>Small changes in fruit ripeness, freezing, and preparation can change the finished texture. The result is a process that takes more attention than the final scoop suggests.</p>
-                    </div>
-                </article>
-
-                <article class="problem-card">
-                    <div class="problem-image">
-                        <img src="https://www.invsoc.org.nz/wp-content/uploads/2016/03/IMG_4555.jpg" alt="Supermarket freezer filled with packaged dairy-free and frozen desserts" loading="lazy">
-                    </div>
-                    <div class="problem-content">
-                        <span class="problem-kicker">04 · THE ALTERNATIVE</span>
-                        <h3>Convenience Often Means a Different Product</h3>
-                        <p>Store shelves offer plenty of dairy-free frozen desserts, but they are formulated as packaged frozen desserts—not the fresh, whipped-fruit soft-serve experience people are looking for.</p>
-                    </div>
-                </article>
             </div>
 
             <div style="text-align: center; margin-top: 4rem;">
