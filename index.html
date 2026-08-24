@@ -43,6 +43,7 @@
         }
         .logo-mark img { height: 100%; width: auto; display: block; }
         .logo { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; color: var(--dark); display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+        .logo-text { white-space: nowrap; }
         nav { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
         .nav-link { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: color 0.2s ease; padding: 0.5rem 0.75rem; border-radius: 8px; border: none; background: transparent; }
         .nav-link:hover, .nav-link.active { color: var(--primary); background: rgba(255, 90, 112, 0.06); }
@@ -113,6 +114,10 @@
             .mobile-menu-btn { display: block; }
             nav { display: none; position: absolute; top: 72px; left: 0; width: 100%; background: var(--white); flex-direction: column; padding: 1.5rem; box-shadow: var(--shadow-md); border-bottom: 1px solid var(--border-light); }
             nav.open { display: flex; }
+            .logo-text { font-size: 0.85rem; }
+        }
+        @media (max-width: 400px) {
+            .logo-text { display: none; }
         }
     </style>
 </head>
@@ -121,8 +126,9 @@
         <div class="container header-container">
             <a class="logo" href="#" onclick="switchTab('home')">
                 <span class="logo-mark">
-                    <img src="logo-cottage.png" alt="Cottage Kitchen Creamery — illustrated cottage with dock">
+                    <img src="images/logo-cottage.png" alt="Cottage Kitchen Creamery — illustrated cottage with dock">
                 </span>
+                <span class="logo-text">Cottage Kitchen Creamery</span>
             </a>
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu">☰</button>
             <nav id="main-nav" role="tablist">
