@@ -170,7 +170,7 @@
                     </div>
                     <div class="evolution-text">
                         <span class="badge-pill">Cottage Kitchen's Nice Cream Drypack</span>
-                        <h3>Ice <br>+ <br>Cold Water <br>+<br> Drypack Nice Cream <br>= <br> Zero Food Waste</h3>
+                        <h3>Ice + Cold Water <br>+ Drypack Nice Cream = <br> Zero Food Waste <br> + An Insanely Delicious, Healthy Soft Serve</h3>
                         </div>
                 </div>
             </div>
@@ -321,7 +321,7 @@
                 <span>Total:</span>
                 <span id="cart-total">$0.00</span>
             </div>
-            <button class="btn btn-primary" style="width: 100%;" onclick="alert('Checkout integration coming soon!')">Proceed to Checkout</button>
+            <button class="btn btn-primary" style="width: 100%;" onclick="showCheckoutStockModal()">Proceed to Checkout</button>
         </div>
     </div>
 
@@ -334,6 +334,19 @@
                 <input type="email" id="modal-email" placeholder="Enter your email...">
                 <button class="btn btn-primary btn-sm" onclick="submitModalEmail()">Notify</button>
             </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="checkout-stock-modal" onclick="if(event.target === this) hideCheckoutStockModal()">
+        <div class="modal">
+            <button class="modal-close" onclick="hideCheckoutStockModal()">&times;</button>
+            <h2>Sorry, we're out of stock!</h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Our limited batches sold out fast. Sign up below and we'll email you a <strong style="color: var(--dark);">$5 off</strong> code the moment our stock is refreshed.</p>
+            <div class="modal-email-row">
+                <input type="email" id="checkout-modal-email" placeholder="Enter your email...">
+                <button class="btn btn-primary btn-sm" id="checkout-modal-submit-btn" onclick="submitCheckoutModalEmail()">Notify Me</button>
+            </div>
+            <p id="checkout-modal-status" style="font-size: 0.85rem; margin-top: 0.75rem; min-height: 1.2em;"></p>
         </div>
     </div>
 
@@ -423,6 +436,65 @@
                 hideStockModal();
             } else {
                 alert('Please enter a valid email address.');
+            }
+        }
+
+        // Checkout "out of stock" interest capture — submits to Formspree
+        const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjybqyya';
+
+        function showCheckoutStockModal() {
+            document.getElementById('checkout-modal-status').textContent = '';
+            document.getElementById('checkout-modal-status').style.color = '';
+            document.getElementById('checkout-stock-modal').classList.add('active');
+        }
+        function hideCheckoutStockModal() {
+            document.getElementById('checkout-stock-modal').classList.remove('active');
+        }
+
+        async function submitCheckoutModalEmail() {
+            const emailInput = document.getElementById('checkout-modal-email');
+            const statusEl = document.getElementById('checkout-modal-status');
+            const submitBtn = document.getElementById('checkout-modal-submit-btn');
+            const email = emailInput.value.trim();
+
+            if (!email || !email.includes('@')) {
+                statusEl.style.color = 'var(--primary)';
+                statusEl.textContent = 'Please enter a valid email address.';
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            statusEl.style.color = 'var(--text-muted)';
+            statusEl.textContent = '';
+
+            try {
+                const response = await fetch(FORMSPREE_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: email,
+                        source: 'checkout-out-of-stock',
+                        cart_snapshot: cart.map(i => `${i.name} x${i.quantity}`).join(', ') || 'empty',
+                        page: window.location.href,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+
+                if (response.ok) {
+                    statusEl.style.color = '#16A34A';
+                    statusEl.textContent = "You're on the list! Watch your inbox for your $5 off code.";
+                    emailInput.value = '';
+                    setTimeout(hideCheckoutStockModal, 2200);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (err) {
+                statusEl.style.color = 'var(--primary)';
+                statusEl.textContent = 'Something went wrong. Please try again in a moment.';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Notify Me';
             }
         }
     </script>
