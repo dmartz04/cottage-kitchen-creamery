@@ -80,7 +80,7 @@
             text-decoration: none;
         }
 
-        nav { display: flex; gap: 1.5rem; align-items: center; }
+        nav { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
         
         .nav-link { 
             text-decoration: none; 
@@ -488,6 +488,7 @@
             <nav id="main-nav" role="tablist">
                 <button onclick="switchTab('home')" id="nav-home" class="nav-link active" role="tab" aria-selected="true" aria-controls="home">Nice Cream</button>
                 <button onclick="switchTab('order')" id="nav-order" class="nav-link" role="tab" aria-selected="false" aria-controls="order">Buy Nice</button>
+                <button onclick="switchTab('subscriber')" id="nav-subscriber" class="nav-link" role="tab" aria-selected="false" aria-controls="subscriber">I'm a Subscriber</button>
                 <button onclick="switchTab('merch')" id="nav-merch" class="nav-link" role="tab" aria-selected="false" aria-controls="merch">Merch</button>
                 
                 <button class="cart-trigger" onclick="toggleCartDrawer()" aria-label="View Shopping Cart">
@@ -547,7 +548,7 @@
             </div>
 
             <div class="bundle-banner">
-                🎉 Special Offer: Mix and match any 3 pints for just $25! (Discount applied at checkout)
+                🎉 Standard Multi-Pack: Any 3 pints for $29!
             </div>
 
             <div class="grid">
@@ -558,11 +559,11 @@
                     </div>
                     <div class="product-details">
                         <h3>Childhood Chocolate Cherry Chunk</h3>
-                        <p>Decadent cacao blend dripping with rich syrup and packed with juicy cherry chunks.</p>
+                        <p>Decadent cacao blend dripping with rich syrup and packed with juicy cherry chunks. Sold in our signature 3-pack bundles.</p>
                     </div>
                     <div class="price-row">
-                        <span class="price">$9.99 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(or 3 for $25)</span></span>
-                        <button class="btn btn-primary btn-sm" onclick="addToCart('Childhood Chocolate Cherry Chunk', 9.99)">Add to Cart</button>
+                        <span class="price">$29.00 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(3-pack bundle)</span></span>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Childhood Chocolate Cherry Chunk (3-Pack)', 29.00)">Add to Cart</button>
                     </div>
                 </div>
 
@@ -573,11 +574,11 @@
                     </div>
                     <div class="product-details">
                         <h3>Vanilla Nice Nice Baby</h3>
-                        <p>Infused with real Madagascar vanilla bean specks for a classic, smooth, and aromatic finish.</p>
+                        <p>Infused with real Madagascar vanilla bean specks for a classic, smooth, and aromatic finish. Sold in 3-pack bundles.</p>
                     </div>
                     <div class="price-row">
-                        <span class="price">$9.99 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(or 3 for $25)</span></span>
-                        <button class="btn btn-primary btn-sm" onclick="addToCart('Vanilla Nice Nice Baby', 9.99)">Add to Cart</button>
+                        <span class="price">$29.00 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(3-pack bundle)</span></span>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Vanilla Nice Nice Baby (3-Pack)', 29.00)">Add to Cart</button>
                     </div>
                 </div>
 
@@ -588,11 +589,11 @@
                     </div>
                     <div class="product-details">
                         <h3>Strawberry Cream Forever</h3>
-                        <p>Real organic strawberries blended into a frosted, retro-inspired fruit dream.</p>
+                        <p>Real organic strawberries blended into a frosted, retro-inspired fruit dream. Sold in 3-pack bundles.</p>
                     </div>
                     <div class="price-row">
-                        <span class="price">$9.99 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(or 3 for $25)</span></span>
-                        <button class="btn btn-primary btn-sm" onclick="addToCart('Strawberry Cream Forever', 9.99)">Add to Cart</button>
+                        <span class="price">$29.00 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(3-pack bundle)</span></span>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Strawberry Cream Forever (3-Pack)', 29.00)">Add to Cart</button>
                     </div>
                 </div>
 
@@ -603,13 +604,31 @@
                     </div>
                     <div class="product-details">
                         <h3>Not Nonnas Neapolitan</h3>
-                        <p>A playful multi-pack tub featuring side-by-side layers of chocolate, vanilla, and strawberry.</p>
+                        <p>A playful multi-pack tub featuring side-by-side layers of chocolate, vanilla, and strawberry. Sold in 3-pack bundles.</p>
                     </div>
                     <div class="price-row">
-                        <span class="price">$9.99 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(or 3 for $25)</span></span>
-                        <button class="btn btn-primary btn-sm" onclick="addToCart('Not Nonnas Neapolitan', 9.99)">Add to Cart</button>
+                        <span class="price">$29.00 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(3-pack bundle)</span></span>
+                        <button class="btn btn-primary btn-sm" onclick="addToCart('Not Nonnas Neapolitan (3-Pack)', 29.00)">Add to Cart</button>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- I'M A SUBSCRIBER TAB CONTENT -->
+        <section id="subscriber" class="tab-content" role="tabpanel" aria-labelledby="nav-subscriber">
+            <div class="hero-nice-cream-wrapper" style="margin-bottom: 2.5rem;">
+                <div class="hero-nice-cream" style="padding: 4rem 2rem;">
+                    <h1>Subscriber Lounge</h1>
+                    <p class="one-liner">Never let your freezer run dry. Lock in our exclusive monthly delivery rate and keep your pantry stocked with endless dessert potential.</p>
+                </div>
+            </div>
+
+            <div style="max-width: 600px; margin: 0 auto; background: var(--white); border: 1px solid var(--border-light); border-radius: 28px; padding: 3rem 2.5rem; text-align: center; box-shadow: var(--shadow-md);">
+                <span class="badge-pill">VIP Membership</span>
+                <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem; color: var(--dark); letter-spacing: -0.5px;">Monthly Nice Cream Delivery</h2>
+                <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;">Get a rotating monthly assortment of 3 delicious drypack pints shipped straight to your door automatically for just <strong style="color: var(--dark);">$25 per month</strong>.</p>
+                
+                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; width: 100%;" onclick="addToCart('Monthly Nice Cream Subscription (3-Pint Bundle)', 25.00); toggleCartDrawer();">I'm not gon' give up</button>
             </div>
         </section>
 
