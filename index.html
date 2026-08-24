@@ -254,7 +254,7 @@
                 <span class="badge-pill">Direct to Blender Savings</span>
                 <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem; color: var(--dark); letter-spacing: -0.5px;">Monthly Nice Cream Delivery</h2>
                 <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;">Our hardest working subscribers deserve a little discount. Scheduled delivery of your flavor of choice for only: <br> <strong style="color: var(--dark);">$25 per month</strong>.</p>
-                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; width: 100%;" onclick="addToCart('Monthly Nice Cream Subscription (3-Pint Bundle)', 25.00); toggleCartDrawer();">I'm a subscriber</button>
+                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; width: 100%;" onclick="addToCart('Monthly Nice Cream Subscription (3-Pint Bundle)')">I'm a subscriber</button>
             </div>
         </section>
 
@@ -321,7 +321,7 @@
                 <span>Total:</span>
                 <span id="cart-total">$0.00</span>
             </div>
-            <button class="btn btn-primary" style="width: 100%;" onclick="showCheckoutStockModal()">Proceed to Checkout</button>
+            <button class="btn btn-primary" style="width: 100%;" onclick="alert('Checkout integration coming soon!')">Proceed to Checkout</button>
         </div>
     </div>
 
@@ -341,7 +341,7 @@
         <div class="modal">
             <button class="modal-close" onclick="hideCheckoutStockModal()">&times;</button>
             <h2>Sorry, we're out of stock!</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">Our limited batches sold out fast. Sign up below and we'll email you a <strong style="color: var(--dark);">$5 off</strong> code the moment our stock is refreshed.</p>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">This item just sold out. Sign up below and we'll email you a <strong style="color: var(--dark);">$5 off</strong> code the moment it's back.</p>
             <div class="modal-email-row">
                 <input type="email" id="checkout-modal-email" placeholder="Enter your email...">
                 <button class="btn btn-primary btn-sm" id="checkout-modal-submit-btn" onclick="submitCheckoutModalEmail()">Notify Me</button>
@@ -382,14 +382,7 @@
             document.getElementById('cart-overlay').classList.toggle('active');
         }
         function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-            if (existingItem) {
-                existingItem.quantity += 1;
-            } else {
-                cart.push({ name, price, quantity: 1 });
-            }
-            updateCartUI();
-            toggleCartDrawer();
+            showCheckoutStockModal(name);
         }
         function updateCartUI() {
             const container = document.getElementById('cart-items-container');
@@ -442,7 +435,9 @@
         // Checkout "out of stock" interest capture — submits to Formspree
         const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjybqyya';
 
-        function showCheckoutStockModal() {
+        let attemptedProduct = null;
+        function showCheckoutStockModal(productName) {
+            attemptedProduct = productName || null;
             document.getElementById('checkout-modal-status').textContent = '';
             document.getElementById('checkout-modal-status').style.color = '';
             document.getElementById('checkout-stock-modal').classList.add('active');
@@ -474,8 +469,8 @@
                     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         email: email,
-                        source: 'checkout-out-of-stock',
-                        cart_snapshot: cart.map(i => `${i.name} x${i.quantity}`).join(', ') || 'empty',
+                        source: 'add-to-cart-out-of-stock',
+                        product_attempted: attemptedProduct || 'unknown',
                         page: window.location.href,
                         timestamp: new Date().toISOString()
                     })
