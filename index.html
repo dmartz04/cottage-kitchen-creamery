@@ -61,7 +61,7 @@
         .tab-content { display: none; padding: 3rem 0 5rem; }
         .tab-content.active { display: block; animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-        .hero-nice-cream-wrapper { position: relative; background: linear-gradient(rgba(35, 38, 47, 0.55), rgba(35, 38, 47, 0.72)), url('welcome-kitchen.png') center 30%/cover no-repeat; border-radius: 32px; overflow: hidden; margin-bottom: 2.5rem; box-shadow: var(--shadow-lg); }
+        .hero-nice-cream-wrapper { position: relative; background: linear-gradient(rgba(35, 38, 47, 0.55), rgba(35, 38, 47, 0.72)), url('welcome-kitchen.png') center 30%/cover no-repeat; border-radius: 32px; overflow: hidden; margin-bottom: 2.5rem; box-shadow: var(--shadow-lg); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
         .hero-nice-cream { text-align: center; padding: 6rem 2rem; max-width: 760px; margin: 0 auto; color: var(--white); }
         .hero-nice-cream h1 { font-size: 3.75rem; font-weight: 800; letter-spacing: -1.5px; line-height: 1.08; margin-bottom: 1.25rem; color: var(--white); text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); }
         .hero-nice-cream p.one-liner { font-size: 1.25rem; font-weight: 500; color: #F1F5F9; line-height: 1.6; text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3); max-width: 600px; margin: 0 auto; }
@@ -223,7 +223,7 @@
                     </div>
                     <div class="price-row">
                         <span class="price">$27.00 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(3-pack bundle)</span></span>
-                        <button class="btn btn-primary btn-sm" onclick="showStockModal('Chocolate Raspberry Chunk (3-Pack)')">Notify Me</button>
+                        <button class="btn btn-primary btn-sm" onclick="showStockModal('Chocolate Raspberry Chunk (3-Pack)', 'preorder')">Pre-Order</button>
                     </div>
                 </div>
 				 <div class="product-card">
@@ -236,7 +236,7 @@
                     </div>
                     <div class="price-row">
                         <span class="price">$27.00 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(3-pack bundle)</span></span>
-                        <button class="btn btn-primary btn-sm" onclick="showStockModal('Strawberry Cream (3-Pack)')">Notify Me</button>
+                        <button class="btn btn-primary btn-sm" onclick="showStockModal('Strawberry Cream (3-Pack)', 'preorder')">Pre-Order</button>
                     </div>
                 </div>
                 <div class="product-card">
@@ -249,7 +249,7 @@
                     </div>
                     <div class="price-row">
                         <span class="price">$27.00 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(3-pack bundle)</span></span>
-                        <button class="btn btn-primary btn-sm" onclick="showStockModal('Madagascar Vanilla (3-Pack)')">Notify Me</button>
+                        <button class="btn btn-primary btn-sm" onclick="showStockModal('Madagascar Vanilla (3-Pack)', 'preorder')">Pre-Order</button>
                     </div>
                 </div>
                
@@ -263,7 +263,7 @@
                     </div>
                     <div class="price-row">
                         <span class="price">$29.00 <span style="font-size:0.75rem; font-weight:500; color:var(--text-muted);">(3-pack bundle)</span></span>
-                        <button class="btn btn-primary btn-sm" onclick="showStockModal('Neapolitan Trio (3-Pack)')">Notify Me</button>
+                        <button class="btn btn-primary btn-sm" onclick="showStockModal('Neapolitan Trio (3-Pack)', 'preorder')">Pre-Order</button>
                     </div>
                 </div>
             </div>
@@ -280,7 +280,7 @@
                 <span class="badge-pill">Direct to Blender Savings</span>
                 <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem; color: var(--dark); letter-spacing: -0.5px;">Monthly Nice Cream Delivery</h2>
                 <p style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.6;">Pick your flavor, set it, and forget it. A fresh 3-pack bundle arrives every month for: <br> <strong style="color: var(--dark);">$25 per month</strong>.</p>
-                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; width: 100%;" onclick="showStockModal('Monthly Nice Cream Subscription (3-Pint Bundle)')">Start My Subscription</button>
+                <button class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem; width: 100%;" onclick="showStockModal('Monthly Nice Cream Subscription (3-Pint Bundle)', 'preorder')">Pre-Subscribe</button>
             </div>
         </section>
 
@@ -367,8 +367,8 @@
     <div class="modal-overlay" id="stock-modal">
         <div class="modal">
             <button class="modal-close" onclick="hideStockModal()">&times;</button>
-            <h2>Get $5 Off!</h2>
-            <p style="color: var(--text-muted); font-size: 0.95rem;">This item is currently out of stock. Drop your email below and we'll send you a $5 off coupon plus a heads up the second it's back.</p>
+            <h2 id="modal-heading">Get $5 Off!</h2>
+            <p id="modal-copy" style="color: var(--text-muted); font-size: 0.95rem;">This item is currently out of stock. Drop your email below and we'll send you a $5 off coupon plus a heads up the second it's back.</p>
             <div class="modal-email-row">
                 <input type="email" id="modal-email" placeholder="Enter your email...">
                 <button class="btn btn-primary btn-sm" id="modal-submit-btn" onclick="submitModalEmail()">Notify</button>
@@ -449,9 +449,20 @@
             updateCartUI();
         }
         let stockModalProduct = '';
+        let stockModalType = 'restock';
         const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mjybqyya';
-        function showStockModal(productName) {
+        function showStockModal(productName, type) {
             stockModalProduct = productName || 'Unknown item';
+            stockModalType = type || 'restock';
+            const heading = document.getElementById('modal-heading');
+            const copy = document.getElementById('modal-copy');
+            if (stockModalType === 'preorder') {
+                heading.innerText = 'Thank You For Your Early Support!';
+                copy.innerText = "Give us your email and we'll notify you when we're ready to ship and provide you with your $5 discount code.";
+            } else {
+                heading.innerText = 'Get $5 Off!';
+                copy.innerText = "This item is currently out of stock. Drop your email below and we'll send you a $5 off coupon plus a heads up the second it's back.";
+            }
             document.getElementById('stock-modal').classList.add('active');
         }
         function hideStockModal() {
@@ -473,12 +484,18 @@
                 body: JSON.stringify({
                     email: email,
                     product: stockModalProduct,
-                    message: `Restock + $5 off coupon request for: ${stockModalProduct}`
+                    type: stockModalType,
+                    message: stockModalType === 'preorder'
+                        ? `Pre-order + $5 off coupon request for: ${stockModalProduct}`
+                        : `Restock + $5 off coupon request for: ${stockModalProduct}`
                 })
             })
             .then(response => {
                 if (response.ok) {
-                    alert("Thanks! Keep an eye on your inbox for your $5 off coupon and a restock alert for " + stockModalProduct + ".");
+                    const confirmMsg = stockModalType === 'preorder'
+                        ? "Thanks for your early support! We'll email you when we're ready to ship, along with your $5 discount code."
+                        : "Thanks! Keep an eye on your inbox for your $5 off coupon and a restock alert for " + stockModalProduct + ".";
+                    alert(confirmMsg);
                     emailInput.value = '';
                     hideStockModal();
                 } else {
